@@ -1,0 +1,26 @@
+#链接远程仓库、不等于添加分支（不推荐）
+$ git remote add [shortname] [url]
+#从远程仓库抓取数据、不自动合并
+$ git fetch [remote-name]
+#从远程仓库抓取数据、自动合并
+$ git pull
+#推送数据到远程仓库
+$ git push [remote-name] [branch-name]
+#默认把本地的master（分支）推送到origin服务器上
+$ git push origin master
+#删除远程仓库、（不是删除分支）
+git remote rm [remote-name]
+#新建分支
+$ git branch [branch_name]
+#切换到该分支工作区
+$ git checkout [branch_name]
+#新建并切换到该分支的工作区
+$ git checkout -b [branch_name]
+#分支合并
+$ git merge [branch_name]
+#删除分支
+$ git branch -d [branch_name]
+#查看commit历史（查看commit_id）
+$ git log
+#删除commit历史
+$ git reset commit_id

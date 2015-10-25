@@ -1,0 +1,31 @@
+#初次使用git连接github（ubuntu），使用步骤：
+#安装git命令
+$ apt-get install git-core
+#配置用户信息
+$ git config --global user.name "wxw"
+$ git config --global user.email wxw_it@163.com
+#检查已有的配置信息，可以使用 git config --list 命令
+#使用git clone使出现如下问题
+ssh: connect to host github.com port 22: Connection refused  
+fatal: Could not read from remote repository.  
+Please make sure you have the correct access rights  
+and the repository exists. 
+#解决办法
+$ vim .ssh/config  
+Host github.com  
+User wxw_it@163.com  
+Hostname ssh.github.com  
+PreferredAuthentications publickey  
+IdentityFile ~/.ssh/id_rsa  
+Port 443
+#测试连接是否成功
+$ssh -T git@github.com  
+Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.
+#如果出现如下警告
+Warning: Permanently added '[ssh.github.com]:443,[192.30.252.151]:443' (RSA) to the list of known hosts.
+#解决办法
+$vim /etc/hosts
+#添加一行
+192.30.252.151   github.com
+#接下来就可以克隆操作
+$ssh clone git@github.com:wuxiwei/aLittle.git
