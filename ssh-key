@@ -12,7 +12,7 @@ Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell
 #登陆远程服务器
 $ssh-keygen -t rsa
 #之后直接回车，不用填写东西。
-#之后会让你输入密码（建议不输密码，才能实现免密码登陆）。
+#之后会让你输入密码（建议不输密码，才能实现免密码登陆）。ssh-copy-id方法简单快捷
 $ssh-copy-id -i ~/.ssh/id_rsa.pub awy3ib44jg@121.42.27.147
 #然后重新启动启动终端
 ssh awy3ib44jd@121.42.27.147
