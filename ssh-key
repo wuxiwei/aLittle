@@ -28,4 +28,4 @@ $ ssh-keygen -t rsa -C "xxx@gmail.com" -f ~/.ssh/github
 ~/.ssh$ ls
 github github.pub id_rsa id_rsa.pub known_hosts
 #其中默认的id_rsa是公司server用的#
-#主要在于分两个不同文件
+#主要在于区分两个不同文件名
