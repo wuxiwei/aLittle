@@ -37,6 +37,16 @@ Warning: Permanently added '[ssh.github.com]:443,[192.30.252.151]:443' (RSA) to 
 $vim /etc/hosts
 #添加一行
 192.30.252.151   github.com
-#接下来就可以克隆操作
-$ssh clone git@github.com:wuxiwei/aLittle.git
-#后续加具体使用方法
+##接下来就可以克隆操作
+#以gerrit-trigger-plugin为例，下面的链接都是从相应页面上直接拷贝的。
+#法一：不用github的账号，打开这个库在github上的主页，运行下面命令即可
+#read only
+        $git clone https://github.com/jenkinsci/gerrit-trigger-plugin.git
+#下面的三种方法都要先在github上注册账户，然后生成相应的ssh key，并把public key添加到个人账户里面，详见github帮助
+#read+write
+        $git clone git@github.com:flyingbird1221/gerrit-trigger-plugin.git   
+#read+write
+        $git clone https://flyingbird1221@github.com/flyingbird1221/gerrit-trigger-plugin.git   
+#会提示输入密码，注意此处的密码不是你在github上账户的密码，而是当前登录系统用户的密码。
+#read only
+        $git clone git://github.com/flyingbird1221/gerrit-trigger-plugin.git
