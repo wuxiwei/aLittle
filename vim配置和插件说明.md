@@ -7,16 +7,16 @@
 "引入插件pathogen使用
 call pathogen#infect()
 colorscheme torte
-"禁用VI兼容模式 
+"禁用VI兼容模式
 set nocompatible
 "Vim 的内部编码
-set encoding=utf-8         
+set encoding=utf-8
 "Vim 在与屏幕/键盘交互时使用的编码(取决于实际的终端的设定)
-set termencoding=utf-8          
+set termencoding=utf-8
 "Vim 当前编辑的文件在存储时的编码
-set fileencoding=utf-8     
+set fileencoding=utf-8
 "Vim 打开文件时的尝试使用的编码
-set fileencodings=ucs-bom,utf-8,gbk,default,latin1 
+set fileencodings=ucs-bom,utf-8,gbk,default,latin1
 "开启语法高亮功能
 syntax enable
 "允许用指定语法高亮配色替换默认方案
@@ -26,7 +26,7 @@ set nu
 " 括号匹配
 set showmatch
 "自动检测文件类型
-filetype plugin indent on 
+filetype plugin indent on
 "在缩进和遇到 Tab 键时使用空格替代
 set expandtab
 "根据文件类型设置缩进格式
@@ -35,11 +35,11 @@ au FileType html,python,vim,javascript setl tabstop=2
 au FileType java,php setl shiftwidth=4
 au FileType java,php setl tabstop=4
 " 启动vim时不要自动折叠代码
-set foldlevel=100  
-"自动对齐       
-set ai   
+set foldlevel=100
+"自动对齐
+set ai
 "依据上面的对起格式
-set si  
+set si
 set smarttab
 set wrap
 set lbr
@@ -60,7 +60,7 @@ let mapleader=";"
 "设置快捷键将选中文本块复制到系统剪贴板
 vnoremap <Leader>y "+y
 "设置快捷键将系统剪贴板内容粘帖到vim
-nmap <Leader>p "+p 
+nmap <Leader>p "+p
 "配置文件.vimrc更改后自动重新载入使设置生效
 autocmd! bufwritepost .vimrc source ~/.vimrc
 "”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"
@@ -116,11 +116,11 @@ vundle是为了解决自动搜索及下载插件而存在的。
 有了这么好的插件管理器，安装插件就变得非常方便，因为vim毕竟是IT开发人员开发出来的，所以vim最终受益者还会是开发人员，所以接下来从配置IDE开发环境记录插件。
 配置开发环境分以下几点：
 
- - 文件浏览插件，一个好的文件浏览肯定少不了目录树，并且能够方便切换。我推荐使用NERDTree。我们先安装然后后续可以自己多看文档，正如我前面所说的有了好的插件管理器，就可以很方便完成安装使用。我们可以直接去到官网http://www.vim.org/scripts/script.php?script_id=1658选择最新版本直接下载即可。我们将压缩包解压以后，通过cp命令行将文件夹直接复制到~/.vim/bundle/下即可，可以打开vim，并在并在命令行输入：NERDTree，并可以看到左边跳出当前文件下的目录树，为了便于方便可以设置每次打开vim自动跳出NERDTree所以我们可以在.vimrc文件中设置，同时可以设置打开关闭快捷键。是不是很方便！
- 
- - 对齐文本插件，对于经常写代码来说，有Tabular会很方便，文本可以按等号，冒号等来对齐文本。我们还是先直接安装插件，到https://github.com/godlygeek/tabular下载，这次是git上的一个项目，不用慌还是直接下载即可，得到安装包后解压到~/.vim/bundle/即可直接使用。
+ - 文件浏览插件，一个好的文件浏览肯定少不了目录树，并且能够方便切换。我推荐使用NERDTree。我们先安装然后后续可以自己多看文档，正如我前面所说的有了好的插件管理器，就可以很方便完成安装使用。我们可以直接去到官网http://www.vim.org/scripts/script.php?script_id=1658 选择最新版本直接下载即可。我们将压缩包解压以后，通过cp命令行将文件夹直接复制到~/.vim/bundle/下即可，可以打开vim，并在并在命令行输入：NERDTree，并可以看到左边跳出当前文件下的目录树，为了便于方便可以设置每次打开vim自动跳出NERDTree所以我们可以在.vimrc文件中设置，同时可以设置打开关闭快捷键。是不是很方便！
 
-接下来需要记录的几个插件都需要基于一个tags来实现。这里不多加解释，需要自己慢慢去啃。。。http://www.java123.net/v/583584.html，这篇文章将tags介绍的很详细，简单的说tags是一个linux上很普遍的源码分析工具, 可以将代码中的函数变量等定义的位置记录在一个名称为tags的文件，类似于数据库记录功能，而接下来的插件就是需要用的这些标签，可以通过命令
+ - 对齐文本插件，对于经常写代码来说，有Tabular会很方便，文本可以按等号，冒号等来对齐文本。我们还是先直接安装插件，到https://github.com/godlygeek/tabular 下载，这次是git上的一个项目，不用慌还是直接下载即可，得到安装包后解压到~/.vim/bundle/即可直接使用。
+
+接下来需要记录的几个插件都需要基于一个tags来实现。这里不多加解释，需要自己慢慢去啃。。。http://www.java123.net/v/583584.html ，这篇文章将tags介绍的很详细，简单的说tags是一个linux上很普遍的源码分析工具, 可以将代码中的函数变量等定义的位置记录在一个名称为tags的文件，类似于数据库记录功能，而接下来的插件就是需要用的这些标签，可以通过命令
 `sudo apt-get install ctags`
 进行安装（Ubuntu下），然后在工作目录下生成tags标签文件，最方便的命令是
 `ctags -R`
@@ -131,15 +131,15 @@ vundle是为了解决自动搜索及下载插件而存在的。
 二、每次我们换个工作目录都需要更换路径，似乎就会不方便，所以最后我们选择一种比较好的方法来避免，可以看上面.vimrc配置文件。
 三、最后就是对tags的更新问题，查了很多资料，都没有很好的解决，有通过编写shell脚步来自动更新，有些麻烦，所以最后选择通过添加快捷键来手动更新tags文件，按F9就可以直接实现，也算方便。更多关于tags的内容还是多看看资料吧。
 
- - 说了那么多，接下来继续记录插件，函数跳转插件，对于IDE而言也算最基本也是最方便的功能之一了吧，还是直接通过官网http://ctags.sourceforge.net/下载最新版本，解压缩到文件夹内，并将该文件夹直接复制到~/.vim/bundle/下即可，一些具体的跳转可以通过查看文档去深入学习，也可以通过快捷键来跳转。这里有没有疑问，它是如何实现跳转，哪来的标签？对没错就是我们前面介绍的tags标签文件，所以可以想象到tags文件生成的好坏直接影响到跳转的功能。
+ - 说了那么多，接下来继续记录插件，函数跳转插件，对于IDE而言也算最基本也是最方便的功能之一了吧，还是直接通过官网http://ctags.sourceforge.net/ 下载最新版本，解压缩到文件夹内，并将该文件夹直接复制到~/.vim/bundle/下即可，一些具体的跳转可以通过查看文档去深入学习，也可以通过快捷键来跳转。这里有没有疑问，它是如何实现跳转，哪来的标签？对没错就是我们前面介绍的tags标签文件，所以可以想象到tags文件生成的好坏直接影响到跳转的功能。
  
- - 自动补全插件，又一个强大的功能，相信对于每位开发者都不陌生，autocomplpop插件就实现了自动补全功能，同样我们先通过http://www.vim.org/scripts/script.php?script_id=1879下载并安装，补全同样得益于tags文件，插件会实时检测是否有可以补全的函数或变量名等，这里额外加一点，对于一门语言来说，靠tags还是不够的，所以我们需要添加语言的参考文档，像自带函数，全局变量等，来辅助补全插件，举个php开发环境例子，所以我们找php的相关补全标签
+ - 自动补全插件，又一个强大的功能，相信对于每位开发者都不陌生，autocomplpop插件就实现了自动补全功能，同样我们先通过http://www.vim.org/scripts/script.php?script_id=1879 下载并安装，补全同样得益于tags文件，插件会实时检测是否有可以补全的函数或变量名等，这里额外加一点，对于一门语言来说，靠tags还是不够的，所以我们需要添加语言的参考文档，像自带函数，全局变量等，来辅助补全插件，举个php开发环境例子，所以我们找php的相关补全标签
 `wget http://chenpeng.info/apps/vim/funclist.txt`
 可以直接下载文件到当前目录，可以修改易于记忆的文件名，最后添加路径到.vimrc配置文件，可以看上面文件内容参考。
 
- - taglist插件，可以将tags标签展示在右边框内，帮助开发人员查看当前文件中的宏、全局变量、函数等标签，先通过http://vim.sourceforge.net/scripts/script.php?script_id=273安装，然后在.vimrc文件中配置插件，参考上面文档内容，就可以自定义显示方式。通过选择标签也可以实现直接跳转功能，具体实现可以查看帮助文档。
+ - taglist插件，可以将tags标签展示在右边框内，帮助开发人员查看当前文件中的宏、全局变量、函数等标签，先通过http://vim.sourceforge.net/scripts/script.php?script_id=273  安装，然后在.vimrc文件中配置插件，参考上面文档内容，就可以自定义显示方式。通过选择标签也可以实现直接跳转功能，具体实现可以查看帮助文档。
 
- - 格式化代码，可以增强代码的可读性，举js代码的格式化例子，Jsbeautify插件可以通过http://www.vim.org/scripts/script.php?script_id=2727下载使用，同时可以参考上面文档设置快捷键，方便使用。
+ - 格式化代码，可以增强代码的可读性，举js代码的格式化例子，Jsbeautify插件可以通过http://www.vim.org/scripts/script.php?script_id=2727 下载使用，同时可以参考上面文档设置快捷键，方便使用。
 
  - syntastic插件，用来做静态语法检查的，支持多语言，比如 Ruby，Python 和 JavaScript 等。实际上这个插件是个接口，背后的语法检查是交给各个语言自己的检查器，Ruby 实际使用ruby -c命令，JavaScript 使用 jshint，jslint 等。
 
