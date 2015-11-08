@@ -109,7 +109,7 @@ nnoremap <F4> :call g:Jsbeautify()<CR>
 pathogen是为了解决每一个插件安装后文件分散到多个目录不好管理而存在的。  
 vundle是为了解决自动搜索及下载插件而存在的。  
 我个人使用的是apthogen插件，当插件过多时，条理的安置插件才是最好的，另外大部分使用的插件可以看到并不会短期内更新。介绍pathogen插件：首先，在用户目录的.vim目录下建立autoload目录和bundle目录，autoload目录中放pathogen.vim。可以在~/.vim/autoload/目录下，用如下命令下载  
-`curl –Sso pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim`
+`curl –Sso pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim`  
 然后在配置文件的首行添加如下命令execute pathogen#infect()。回头看看上方.vimrc配置文件开头，有了pathogen后，下载的插件就直接把它们放到bundle目录下即可，而不需要管理相应的autoload、colors、plugin等目录。添加help文件：在vim下:helptags ~/.vim/doc/即可通过help命令查看插件文档。  
 (注：哪怕插件只是一个.vim文件，也可以先新建一个文件夹，然后再建plugin文件夹，最后将该插件放入即可）  
 
@@ -121,11 +121,11 @@ vundle是为了解决自动搜索及下载插件而存在的。
  - 对齐文本插件，对于经常写代码来说，有Tabular会很方便，文本可以按等号，冒号等来对齐文本。我们还是先直接安装插件，到https://github.com/godlygeek/tabular 下载，这次是git上的一个项目，不用慌还是直接下载即可，得到安装包后解压到~/.vim/bundle/即可直接使用。  
 
 接下来需要记录的几个插件都需要基于一个tags来实现。这里不多加解释，需要自己慢慢去啃。。。http://www.java123.net/v/583584.html ，这篇文章将tags介绍的很详细，简单的说tags是一个linux上很普遍的源码分析工具, 可以将代码中的函数变量等定义的位置记录在一个名称为tags的文件，类似于数据库记录功能，而接下来的插件就是需要用的这些标签，可以通过命令  
-`sudo apt-get install ctags`
-进行安装（Ubuntu下），然后在工作目录下生成tags标签文件，最方便的命令是
-`ctags -R`
-直接根据目录下所有文件来获取标签，类似于函数名，变量名等，最后在.vimrc文件中添加路径
-`:set tags+=/home/user/tags`
+`sudo apt-get install ctags`  
+进行安装（Ubuntu下），然后在工作目录下生成tags标签文件，最方便的命令是  
+`ctags -R`  
+直接根据目录下所有文件来获取标签，类似于函数名，变量名等，最后在.vimrc文件中添加路径  
+`:set tags+=/home/user/tags`  
 就可以让vim在每次启动的时候自动找到tags标签文档。有几个缺点：    
 一、直接根据全部文件会浪费空间，tags文件过大。那么我们可以根据想要的某些文件类型来生成tags文件，像*.js,*.html等。  
 二、每次我们换个工作目录都需要更换路径，似乎就会不方便，所以最后我们选择一种比较好的方法来避免，可以看上面.vimrc配置文件。  
