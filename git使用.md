@@ -40,11 +40,11 @@
 ###法一：不用github的账号，打开这个库在github上的主页，运行下面命令即可
 ####read only
 `$git clone https://github.com/jenkinsci/gerrit-trigger-plugin.git`
-###下面的三种方法都要先在github上注册账户，然后生成相应的ssh key，并把public key添加到个人账户里面，详见github帮助
+####下面的三种方法都要先在github上注册账户，然后生成相应的ssh key，并把public key添加到个人账户里面，详见github帮助
 ####read+write
 `$git clone git@github.com:flyingbird1221/gerrit-trigger-plugin.git`
 ####read+write
-#### `$git clone https://flyingbird1221@github.com/flyingbird1221/gerrit-trigger-plugin.git`
+`$git clone https://flyingbird1221@github.com/flyingbird1221/gerrit-trigger-plugin.git`
 ###会提示输入密码，注意此处的密码不是你在github上账户的密码，而是当前登录系统用户的密码。
 ####read only
 `$git clone git://github.com/flyingbird1221/gerrit-trigger-plugin.git`
