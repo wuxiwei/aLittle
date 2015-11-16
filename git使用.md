@@ -48,3 +48,12 @@
 ###会提示输入密码，注意此处的密码不是你在github上账户的密码，而是当前登录系统用户的密码。
 ####read only
 `$git clone git://github.com/flyingbird1221/gerrit-trigger-plugin.git`
+##本地仓库直接添加到github上
+`cd newdir`
+`git init`
+####添加远程仓库
+`git remote add origin git@github.com:wuxiwei/aLittle.git`
+####更新数据
+`git pull origin master`
+####上传数据
+`git push origin master`
