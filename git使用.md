@@ -27,7 +27,7 @@
 `IdentityFile ~/.ssh/id_rsa`  
 `Port 443`
 ##测试连接是否成功
-`$ssh -T git@github.com`  
+`$ssh -T git@github.com`
 `Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
 ##如果出现如下警告
 `Warning: Permanently added '[ssh.github.com]:443,[192.30.252.151]:443' (RSA) to the list of known hosts.`
