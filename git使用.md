@@ -2,29 +2,29 @@
 ##安装git命令
 `$ apt-get install git-core`
 ##使用ssh-key实现远程免密码登陆
-`$cd ~/.ssh`  
-`$ssh-keygen -t rsa -C "wxw_it@163.com"`  
-之后直接回车，不用填写东西，之后会让你输入密码（建议不输密码，才能实现免密码登陆）。  
+`$cd ~/.ssh`
+`$ssh-keygen -t rsa -C "wxw_it@163.com"`
+之后直接回车，不用填写东西，之后会让你输入密码（建议不输密码，才能实现免密码登陆）。
 然后就生成两个文件：id_rsa , id_rsa.pub。在GitHub上注册一个用户，然后进入SSH keys，把id_rsa.pub的内容复制进去保存即可。
 ##测试连接是否成功
-`$ssh -T git@github.com`  
+`$ssh -T git@github.com`
 `Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
 ##配置用户信息
-`$ git config --global user.name "wxw"`  
+`$ git config --global user.name "wxw"`
 `$ git config --global user.email wxw_it@163.com`
 ##检查已有的配置信息
 `git config --list`
 ##使用git clone或测试连接是否成功时出现如下问题
-`ssh: connect to host github.com port 22: Connection refused`  
-`fatal: Could not read from remote repository.`  
+`ssh: connect to host github.com port 22: Connection refused`
+`fatal: Could not read from remote repository.`
 `Please make sure you have the correct access rights and the repository exists.`
 ##解决办法
-`$ vim .ssh/config`  
-`Host github.com`  
-`User wxw_it@163.com`  
-`Hostname ssh.github.com`  
-`PreferredAuthentications publickey`  
-`IdentityFile ~/.ssh/id_rsa`  
+`$ vim .ssh/config`
+`Host github.com`
+`User wxw_it@163.com`
+`Hostname ssh.github.com`
+`PreferredAuthentications publickey`
+`IdentityFile ~/.ssh/id_rsa`
 `Port 443`
 ##测试连接是否成功
 `$ssh -T git@github.com`
