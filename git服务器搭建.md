@@ -10,7 +10,7 @@ $ touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
 ```
 第二步 为用户git的authorized_keys文件添加一些开发者的SSH公钥。
 公钥获取： 开发用户到家目录，进入.ssh文件夹，找到id_dsa.pub命名的文件，内容就是SSH公钥。如果没有，运行ssh-keyen程序来创建。
-将获取的公钥发送复制到服务器的authorized_keys文件中。 
+将获取的公钥发送复制到服务器的authorized_keys文件中。  
 第三步 确定存放git仓库的位置，并创建仓库。
 我们使用git家目录作为存放git的仓库，执行创建Test.git仓库的命令（git仓库建议用.git后缀）。
 ```
@@ -40,7 +40,7 @@ $ vim README
 $ git commit -m 'fix for the README file'
 $ git push origin master
 ```
-注意：将开发者的SSH公钥提前保存到服务器上，才会有读写权限。 
+注意：将开发者的SSH公钥提前保存到服务器上，才会有读写权限。  
 第五步 基本实现git服务器搭建后，可以发现此时的主机可以通过git用户身份直接登陆，处于安全考虑，对git用户加以限制。
 通过编辑`/etc/passwd`文件完成，找到如下一行：
 ```
