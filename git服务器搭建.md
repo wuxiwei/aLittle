@@ -52,7 +52,7 @@ git:x:1001:1001:,,,:/home/git/usr/bin/git-shell
 ```
 如果将 /usr/bin/git-shell 设置为用户 git 的登录 shell（login shell），那么用户 git 便不能获得此服务器的普通 shell 访问权限。  
 第六步 git仓库里面的内容如果不做处理，将只是在仓库内保存着，但是如果想要将内容同样备份到服务器的某个目录下，假如想要将程序同步到web站点目录，可以通过设置钩子实现。
-在服务器裸版本库目录下有一个hooks目录，进去后添加一个post-receive的文件，并加入如下内容：
+在服务器裸版本库目录下有一个hooks目录，进去后添加一个post-receive的可执行文件，并加入如下内容：
 ```
 #!/bin/bash
 git --work-tree=/var/www/html/Test checkout -f
