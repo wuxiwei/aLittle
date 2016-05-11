@@ -2,4 +2,5 @@
 >主意：
 1. Linux主要分为两大发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同。
 2. *nihao*
+***
 
