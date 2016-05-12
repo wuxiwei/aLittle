@@ -59,13 +59,30 @@ CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP�
 很多时候会对PHP环境要求校新的版本，例如PHP5.6环境，记录一种通过yum工具安装最新PHP版本的方法。首先，需要在系统上安装一个扩展yum源，即epel源。可从http://fedoraproject.org/wiki/EPEL 网站下载并安装。
 
 `[root@localhost wuxiwei]# wget http://mirrors.neusoft.edu.cn/epel/7/x86_64/e/epel-release-7-5.noarch.rpm`
+
 `[root@localhost wuxiwei]# rpm -ivh epel-release-7-5.noarch.rpm`
 
 接着，还需要一个REMI源，这个yum源提供了最新的PHP版本的下载和安装，它的官网http://rpms.famillecollet.com/ 。安装REMI源的过程如下。
 
 `[root@localhost wuxiwei]# rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi`
+
 `[root@localhost wuxiwei]# wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm`
+
 `[root@localhost wuxiwei]# rpm -ivh remi-release-7.rpm`
+
+默认情况下，REMI是禁用的，防止多个yum源发生冲突。可以通过命令查看REMI源是否成功安装
+
+`[root@localhost wuxiwei]# yum repolist disabled | grep remi`
+
+搜索REMI源仓库中可用的包
+
+`[root@localhost wuxiwei]# yum --enablerepo=remi list php`
+
+`[root@localhost wuxiwei]# yum --enablerepo=remi-php56 list php`
+
+通过REMI源安装需要的PHP版本，安装PHP5.6版本。
+
+`[root@localhost wuxiwei]# yum --enablerepo=remi-php56 install php`
 
 ####Ubuntu 14.04 下安装LAMP开发环境及配置文件管理
 
