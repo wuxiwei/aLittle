@@ -7,8 +7,10 @@ Linux下安装软件，最常见有如下三种：
 1. 源码安装方式
 2. RPM/deb安装方式
 3. yum/apt-get安装方式
+
 ###通过yum/apt-get安装LAMP开发环境
 ####安装并配置Apache
+
 * CentOS 7.0 通过yum方式安装
 
 `[root@localhost ~]# yum install httpd`
