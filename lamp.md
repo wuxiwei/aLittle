@@ -1,18 +1,10 @@
 ##Linux安装LAMP开发环境及配置文件管理
 >Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.0和Ubuntu 14.04做为主机（L）
+>Linux下安装软件，最常见有源码安装方式、RPM/deb安装方式、yum/apt-get安装方式等，在这里使用yum/apt-get安装LAMP开发环境
 
-###软件安装方式
-Linux下安装软件，最常见有如下三种：
+####CentOS 7.0 下安装LAMP开发环境及配置文件管理
 
-1. 源码安装方式
-2. RPM/deb安装方式
-3. yum/apt-get安装方式
-
-###通过yum/apt-get安装LAMP开发环境
-
-####安装并配置Apache
-
-* CentOS 7.0 通过yum方式安装
+#####安装并配置Apache
 
 `[root@localhost ~]# yum install httpd`
 
@@ -30,17 +22,48 @@ Linux下安装软件，最常见有如下三种：
 
 开启Apache服务
 
-`[root@localhost wuxiwei]# systemctl start httpd`
-
+`[root@localhost wuxiwei]# systemctl start httpd` 
 重新加载httpd
 
 `[root@localhost wuxiwei]# systemctl reload httpd`
 
-* Ubuntu 14.04 通过apt-get方式安装
+####Ubuntu 14.04 下安装LAMP开发环境及配置文件管理
 
-更新软件源
+* 安装并配置Apache
 
-`[root@localhost wuxiwei]# sudo apt-get update`
+`[root@localhost wuxiwei]# sudo apt-get install apache2`
+
+* 安装并配置PHP5
+
+`[root@localhost wuxiwei]# sudo apt-get install php5`
+
+* 查看是否已经正确安装并配置PHP5
+
+`[root@localhost wuxiwei]# cat /etc/apache2/mods_enables/libphp5.so`
+
+* 安装并配置MYSQL
+
+`[root@localhost wuxiwei]# sudo apt-get install mysql-server`
+
+* 查看PHP5和MYSQL是否可以正常数据交互
+
+`[root@localhost wuxiwei]# cat /etc/php5.d/conf.d/mysql.ini`
+
+* 手动安装PHP5对于MYSQL扩展
+
+`[root@localhost wuxiwei]# sudo apt-get install php5-mysql`
+
+* 重启MYSQL服务
+
+`[root@localhost wuxiwei]# sudo service mysql restart`
+
+* 重启Apache服务
+
+`[root@localhost wuxiwei]# sudo service apache2 restart`
+
+* 安装PHP5常用扩展
+
+`[root@localhost wuxiwei]# sudo apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
 
 ***
 
