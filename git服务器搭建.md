@@ -59,4 +59,3 @@ git --work-tree=/var/www/html/Test checkout -f
 ```
 注意：--work-tree对应web站点目录。同样为了写入数据最好将站点目录的所属和权限给到git用户。
 然后就可以开始在本地版本库工作区里开发，然后使用git push指令推送到远程版本库，钩子post-receive会自动生效，将文件检出到--work-tree目录里，实现同步。
-

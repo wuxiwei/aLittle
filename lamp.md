@@ -1,15 +1,13 @@
 ##Linux安装LAMP开发环境及配置文件管理
->Linux主要分为两大发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.0和Ubuntu 14.04做为主机（L）
+>Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.0和Ubuntu 14.04做为主机（L）
 
-###安装lamp开发环境方法
-1. 通过源码安装
-2. 通过软件源安装
-3. 通过集成lamp软件包直接安装
-
-####通过源码安装
-源码安装的好处在于，更加灵活，可自定义安装插件，位置等。
-####通过软件源安装
-#####1.安装并配置Apache
+###软件安装方式
+Linux下安装软件，最常见有如下三种：
+1. 源码安装方式
+2. RPM/deb安装方式
+3. yum/apt-get安装方式
+###通过yum/apt-get安装LAMP开发环境
+####安装并配置Apache
 * CentOS 7.0 通过yum方式安装
 
 `[root@localhost ~]# yum install httpd`
@@ -35,6 +33,10 @@
 `[root@localhost wuxiwei]# systemctl reload httpd`
 
 * Ubuntu 14.04 通过apt-get方式安装
+
+更新软件源
+
+`[root@localhost wuxiwei]# sudo apt-get update`
 
 ***
 
