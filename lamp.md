@@ -28,19 +28,49 @@
 
 `[root@localhost wuxiwei]# systemctl reload httpd`
 
+#####安装并配置MariaDB（MYSQL）
+
+`[root@localhost wuxiei]# yum install mariadb-server mariadb`
+
+MariaDB完全兼容MYSQL，包括API和命令行。CentOS 从7.x开始默认使用MariaDB。
+
+通过内置的安全配置脚本可实现对数据库的安全保护
+
+`[root@localhost wuxiwei]# /usr/bin/mysql_secure_installation`
+
+将MariaDB设置为开机启动
+
+`[root@localhost wuxiwei]# systemctl enable mariadb`
+
+开启MariaDB服务
+
+`[root@localhost wuxiwei]# systemctl start mariadb`
+
+关闭MariaDB服务
+
+`[root@localhost wuxiwei]# systemctl stop mariadb`
+
+#####安装并配置PHP
+
+`[root@localhost wuxiei]# yum install php php-cli php-pear php-pdo php-mysqlnd php-gd php-mbstring php-mcrypt php-xml`
+
+CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP源码提供的MYSQL驱动数据库。
+
+很多时候会对PHP环境要求校新的版本，例如PHP5.6环境，记录一种通过yum工具安装最新PHP版本的方法。首先，需要在系统上安装一个扩展yum源，即epel源。可从http://fedoraproject.org/wiki/EPEL 网站下载
+
 ####Ubuntu 14.04 下安装LAMP开发环境及配置文件管理
 
 #####安装并配置Apache
 
-`[root@localhost wuxiwei]# sudo apt-get install apache2`
+`[root@localhost wuxiwei]# apt-get install apache2`
 
 重启Apache服务
 
-`[root@localhost wuxiwei]# sudo service apache2 restart`
+`[root@localhost wuxiwei]# service apache2 restart`
 
 #####安装并配置PHP5
 
-`[root@localhost wuxiwei]# sudo apt-get install php5`
+`[root@localhost wuxiwei]# apt-get install php5`
 
 查看Apache是否已经正确配置PHP5
 
@@ -48,11 +78,11 @@
 
 安装PHP5常用扩展
 
-`[root@localhost wuxiwei]# sudo apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
+`[root@localhost wuxiwei]# apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
 
 #####安装并配置MYSQL
 
-`[root@localhost wuxiwei]# sudo apt-get install mysql-server`
+`[root@localhost wuxiwei]# apt-get install mysql-server`
 
 查看PHP5和MYSQL是否可以正常数据交互
 
@@ -60,11 +90,11 @@
 
 手动安装PHP5对于MYSQL扩展
 
-`[root@localhost wuxiwei]# sudo apt-get install php5-mysql`
+`[root@localhost wuxiwei]# apt-get install php5-mysql`
 
 重启MYSQL服务
 
-`[root@localhost wuxiwei]# sudo service mysql restart`
+`[root@localhost wuxiwei]# service mysql restart`
 
 #####配置文件管理
 
@@ -72,12 +102,12 @@ Apache配置文件位于/etc/apache2目录下，Apache加载配置首先加载/e
 
 PHP5配置文件位于/etc/php5目录下，核心配置文件php.ini。
 
-MYSQL配置文件位于/etc/mysql目录下，核心配置文件my.cnf。
+MYSQL配置文件位于/etc/mysql目录下，核心配置文件my.cnf，默认数据库存储位于/var/lin/mysql目录下。
 
 ***
 
-实现独立域名访问，可通过配置Apache的*虚拟主机*访问来实现，
-* CentOS 7.0 在/etc/httpd/conf.d目录下新建一个文件wuxiwei.conf，并重启apache。
+####Apache虚拟主机配置
+* CentOS 7.0 在/etc/httpd/conf.d目录下新建wuxiwei.conf文件，并重启apache。
 * Ubuntu 14.04 在/etc/apache2/sites-available目录下新建wuxiwei.conf文件，同时在/etc/apache2/sites-enabled目录下创建软链接到wuxiwei.conf文件，并重启apache。
 * wuxiwei.conf文件内容基本如下。
 ```
