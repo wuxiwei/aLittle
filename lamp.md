@@ -68,7 +68,12 @@
 
 #####配置文件管理
 
-Apache配置文件位于/etc/apache2目录下，PHP5配置文件位于/etc/php5目录下，MYSQL配置文件位于/etc/mysql目录下
+Apache配置文件位于/etc/apache2目录下，Apache加载配置首先加载/etc/apache2/apache2.conf文件，通过Include将其他配置文件载入，核心配置文件包括：mods-*** Apache模块；sites-*** 虚拟主机，其中关键词available表示可以使用的；enable表示已启用的，两者通过ln -s命令建立软连接。
+
+PHP5配置文件位于/etc/php5目录下，核心配置文件php.ini。
+
+MYSQL配置文件位于/etc/mysql目录下，核心配置文件my.cnf。
+
 ***
 
 实现独立域名访问，可通过配置Apache的虚拟主机访问来实现，在/etc/httpd/conf.d目录下新建一个文件wuxiwei.conf，内容如下。
