@@ -9,6 +9,7 @@ Linux下安装软件，最常见有如下三种：
 3. yum/apt-get安装方式
 
 ###通过yum/apt-get安装LAMP开发环境
+
 ####安装并配置Apache
 
 * CentOS 7.0 通过yum方式安装
@@ -23,11 +24,11 @@ Linux下安装软件，最常见有如下三种：
 
 `[root@localhost wuxiwei]# systemctl enable httpd`
 
-将关闭Apache服务
+关闭Apache服务
 
 `[root@localhost wuxiwei]# systemctl stop httpd`
 
-将开启Apache服务
+开启Apache服务
 
 `[root@localhost wuxiwei]# systemctl start httpd`
 
