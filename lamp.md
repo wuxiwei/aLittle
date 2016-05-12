@@ -1,8 +1,8 @@
 ##Linux安装LAMP开发环境及配置文件管理
->Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.0和Ubuntu 14.04做为主机（L）  
+>Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.1和Ubuntu 14.04做为主机（L）  
 >Linux下安装软件，最常见有源码安装方式、RPM/deb安装方式、yum/apt-get安装方式等，在这里使用yum/apt-get安装LAMP开发环境
 
-####CentOS 7.0 下安装LAMP开发环境及配置文件管理
+####CentOS 7.1 下安装LAMP开发环境及配置文件管理
 
 #####安装并配置Apache
 
