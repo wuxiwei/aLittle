@@ -14,7 +14,7 @@
 
 `[root@localhost ~]# yum install httpd`
 
-默认安装的Apache版本为httpd-2.4.6-31.el7.centos.x86_64，默认配置文件主目录位于/etc/httpd下，/etc/httpd/conf/httpd.conf是Apache的主配置文件，Apache模块位于/usr/lib64/httpd/modules目录下，Apache模块的配置文件位于/etc/httpd/conf.modules.d目录下，设置禁用或开启模块可以通过修改改目录下每个文件，Web根目录位于/var/www/html目录下，日志文件位于/var/log/httpd目录下。
+默认安装的Apache版本为httpd-2.4.6-31.el7.centos.x86_64，默认配置文件主目录位于/etc/httpd下，/etc/httpd/conf/httpd.conf是Apache的主配置文件，Apache模块位于/usr/lib64/httpd/modules目录下，Apache模块的配置文件位于/etc/httpd/conf.modules.d目录下，设置禁用或开启模块可以通过修改该目录下每个文件，Web根目录位于/var/www/html目录下，日志文件位于/var/log/httpd目录下。
 
 重点关注/etc/httpd目录。这个目录下，有个conf.d目录，默认情况下/etc/httpd/conf.d目录下所有的“.conf”结尾的文件都会被读取。因此，很多情况下不需要修改主配置文件/etc/httpd/conf/httpd.conf，而是在/etc/httpd/conf.d目录下新建一个以“.conf”结尾的文件来完成各种配置。
 
@@ -35,6 +35,8 @@
 `[root@localhost wuxiwei]# systemctl reload httpd`
 
 * Ubuntu 14.04 通过apt-get方式安装
+
+***
 
 实现独立域名访问，可通过配置Apache的虚拟主机访问来实现，在/etc/httpd/conf.d目录下新建一个文件wuxiwei.conf，内容如下。
 ```
