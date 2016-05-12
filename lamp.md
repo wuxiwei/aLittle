@@ -1,5 +1,6 @@
 ##Linux安装LAMP开发环境及配置文件管理
 >Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.0和Ubuntu 14.04做为主机（L）
+
 >Linux下安装软件，最常见有源码安装方式、RPM/deb安装方式、yum/apt-get安装方式等，在这里使用yum/apt-get安装LAMP开发环境
 
 ####CentOS 7.0 下安装LAMP开发环境及配置文件管理
@@ -66,6 +67,9 @@
 
 `[root@localhost wuxiwei]# sudo service mysql restart`
 
+#####配置文件管理
+
+Apache配置文件位于/etc/apache2目录下，PHP5配置文件位于/etc/php5目录下，MYSQL配置文件位于/etc/mysql目录下
 ***
 
 实现独立域名访问，可通过配置Apache的虚拟主机访问来实现，在/etc/httpd/conf.d目录下新建一个文件wuxiwei.conf，内容如下。
