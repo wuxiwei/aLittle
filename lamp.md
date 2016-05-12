@@ -145,9 +145,9 @@ ServerName wuxiwei.cn
 #ServerName别名，通过别名也可以访问这个虚拟主机
 ServerAlias www.wuxiwei.cn
 #主机目录
-DocumentRoot /var/www/html/wuxiwei
+DocumentRoot /var/wuxiwei
 
-<Directory "/var/www/html/wuxiwei/">
+<Directory "/var/wuxiwei/">
 #指定该目录启用FollowSymLinks特性，None：表示不起用任何的服务器特性，Indexes：如果输入的网址对应服务器上的一个目录，而此目录中又没有Directorylndex指令（例如：Directorylndex index.php index.html），那么服务器就会返回由mod_autoindex模块生成的一个格式化后的目录列表，并列出该目录下所有的文件。
     Options FollowSymLinks
     #允许所有都可以访问
