@@ -76,7 +76,10 @@ MYSQL配置文件位于/etc/mysql目录下，核心配置文件my.cnf。
 
 ***
 
-实现独立域名访问，可通过配置Apache的虚拟主机访问来实现，在/etc/httpd/conf.d目录下新建一个文件wuxiwei.conf，内容如下。
+实现独立域名访问，可通过配置Apache的虚拟主机访问来实现，
+* CentOS 7.0 在/etc/httpd/conf.d目录下新建一个文件wuxiwei.conf，并重启apache。
+* Ubuntu 14.04 在/etc/apache2/sites-available目录下新建wuxiwei.conf文件，同时在/etc/apache2/sites-enabled目录下创建软链接到wuxiwei.conf文件，并重启apache。
+* wuxiwei.conf文件内容基本如下。
 ```
 <VirtualHost *:80>
 #管理员邮箱
