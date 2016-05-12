@@ -34,37 +34,37 @@
 
 `[root@localhost wuxiwei]# sudo apt-get install apache2`
 
+重启Apache服务
+
+`[root@localhost wuxiwei]# sudo service apache2 restart`
+
 #####安装并配置PHP5
 
 `[root@localhost wuxiwei]# sudo apt-get install php5`
 
-#####查看是否已经正确安装并配置PHP5
+查看Apache是否已经正确配置PHP5
 
 `[root@localhost wuxiwei]# cat /etc/apache2/mods_enables/libphp5.so`
+
+安装PHP5常用扩展
+
+`[root@localhost wuxiwei]# sudo apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
 
 #####安装并配置MYSQL
 
 `[root@localhost wuxiwei]# sudo apt-get install mysql-server`
 
-#####查看PHP5和MYSQL是否可以正常数据交互
+查看PHP5和MYSQL是否可以正常数据交互
 
 `[root@localhost wuxiwei]# cat /etc/php5.d/conf.d/mysql.ini`
 
-#####手动安装PHP5对于MYSQL扩展
+手动安装PHP5对于MYSQL扩展
 
 `[root@localhost wuxiwei]# sudo apt-get install php5-mysql`
 
-#####重启MYSQL服务
+重启MYSQL服务
 
 `[root@localhost wuxiwei]# sudo service mysql restart`
-
-#####重启Apache服务
-
-`[root@localhost wuxiwei]# sudo service apache2 restart`
-
-#####安装PHP5常用扩展
-
-`[root@localhost wuxiwei]# sudo apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
 
 ***
 
