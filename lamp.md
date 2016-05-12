@@ -38,9 +38,20 @@ DocumentRoot /var/www/html/wuxiwei
     Require all granted
 </Directory>
 
+#错误日志
 Errorlog /var/log/httpd/wuxiwei_error.log
+#访问日志
 CustomLog /vat/log/httpd/wuxiwei_access.log combined
 </VirtualHost>
 ```
+然后创建虚拟主机的文件夹
 
+`[root@localhost wuxiwei]# mkdir -p /var/www/html/wuxiwei/`
 
+将Apache设置为开机自启动模式
+
+`[root@localhost wuxiwei]# systemctl enable httpd`
+
+重新加载httpd
+
+`[root@localhost wuxiwei]# systemctl reload httpd`
