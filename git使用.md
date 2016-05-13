@@ -1,26 +1,36 @@
 #初次使用git连接github（ubuntu）
 ##安装git命令
 `$ apt-get install git-core`
-##使用ssh-key实现远程免密码登陆
-`$cd ~/.ssh`
-`$ssh-keygen -t rsa -C "wxw_it@163.com"`
-提示输入时，直接回车。然后就生成两个文件：id_rsa , id_rsa.pub。  
-在GitHub上注册一个用户，然后进入SSH keys，把id_rsa.pub的内容复制进去保存即可。
-##测试连接是否成功
-`$ssh -T git@github.com`  
-`Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
 ##配置用户信息
 `$ git config --global user.name "wxw"`  
 `$ git config --global user.email wxw_it@163.com`
 ##检查已有的配置信息
 `git config --list`
-##使用git clone或测试连接是否成功时出现如下问题
+##使用ssh-key实现远程免密码提交
+`$ cd ~/.ssh`
+`$ ssh-keygen -t rsa -C "wxw_it@163.com"`
+提示输入时，直接回车。然后就生成两个文件：id_rsa , id_rsa.pub。  
+在GitHub上注册一个用户，然后进入SSH keys，把id_rsa.pub的内容复制进去保存即可。
+##测试连接是否成功
+`$ ssh -T git@github.com`  
+`Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
+
+##git clone操作，以aLittle为例。
+情况一：不用GitHub帐号，或则没有将私密id_rsa.pub保存到GitHub的SSH keys上
+
+`$ git clone https://github.com/wuxiwei/aLittle.git`
+
+情况一：将私密id_rsa.pub保存到GutHub的SSH keys上，否则提示没有权限
+
+`$ git clone git@github.com:wuxiwei/aLittle.git`
+
+##使用git clone提示没有权限如下
 ```
 ssh: connect to host github.com port 22: Connection refused.
 fatal: Could not read from remote repository.
 Please make sure you have the correct access rights and the repository exist.
 ```
-##解决办法
+##除了将私密直接存入GitHub上，另外一个特殊的方法，实质都是将私密保存到Github的SSH keys上
 `$ vim .ssh/config`  
 ```
 Host github.com
@@ -30,7 +40,7 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 Port 443
 ```
-##如果出现如下警告
+##如果在操作时遇到如下提示
 `Warning: Permanently added '[ssh.github.com]:443,[192.30.252.151]:443' (RSA) to the list of known hosts.`
 ##解决办法
 `$vim /etc/hosts`
