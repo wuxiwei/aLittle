@@ -11,13 +11,13 @@
 `git config --list`
 
 ###使用ssh-key实现远程免密码提交（只针对git/ssh协议）
-`$ cd ~/.ssh`
+`$ cd ~/.ssh`  
 `$ ssh-keygen -t rsa -C "wxw_it@163.com"`  
 提示输入时，直接回车。然后就生成两个文件：id_rsa , id_rsa.pub。  
 在GitHub上注册一个用户，然后进入SSH keys，把id_rsa.pub的内容复制进去保存即可。
 
 ###测试连接是否成功
-`$ ssh -T git@github.com`
+`$ ssh -T git@github.com`  
 `Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
 
 ##本地仓库和远程仓库使用
