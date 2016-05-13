@@ -1,5 +1,6 @@
 ##svn忽略文件办法
 假设想忽略文件temp
+
 1. cd到temp所在的目录下：
 2. svn propedit svn:ignore .
 注意：请别漏掉最后的点（.表示当前目录），如果报错请看下面
