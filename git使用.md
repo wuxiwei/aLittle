@@ -15,9 +15,11 @@
 ##检查已有的配置信息
 `git config --list`
 ##使用git clone或测试连接是否成功时出现如下问题
-`ssh: connect to host github.com port 22: Connection refused`  
-`fatal: Could not read from remote repository.`  
-`Please make sure you have the correct access rights and the repository exists.`
+```
+ssh: connect to host github.com port 22: Connection refused.
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights and the repository exist.
+```
 ##解决办法
 `$ vim .ssh/config`  
 ```
