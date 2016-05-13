@@ -1,9 +1,9 @@
 ##使用git准备工作
 
-###安装git命令
+####安装git命令
 `$ apt-get install git-core`
 
-###配置用户信息
+####配置用户信息
 `$ git config --global user.name "wxw"`  
 `$ git config --global user.email wxw_it@163.com`
 
