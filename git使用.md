@@ -30,15 +30,13 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 Port 443
 ```
-##测试连接是否成功
-`$ssh -T git@github.com`
-`Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
 ##如果出现如下警告
 `Warning: Permanently added '[ssh.github.com]:443,[192.30.252.151]:443' (RSA) to the list of known hosts.`
 ##解决办法
 `$vim /etc/hosts`
 ##添加一行
-192.30.252.151   github.com
+`192.30.252.151   github.com`
+
 ##接下来就可以克隆操作
 ##以gerrit-trigger-plugin为例，下面的链接都是从相应页面上直接拷贝的。
 ###法一：不用github的账号，打开这个库在github上的主页，运行下面命令即可
