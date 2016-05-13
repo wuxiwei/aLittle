@@ -45,4 +45,4 @@ origin为该远程仓库起的名称，可自定义。
 ##代码提交远程仓库
 `$ git push origin master`
 其中origin为远程仓库，master为本地默认主分支名称。  
-远程仓库是https协议下，每次都会提示输入GitHub帐号和密码。git协议下，将私密id_rsa.pub保存到GitHub上即可密码提交。
+远程仓库是https协议下，每次都会提示输入GitHub帐号和密码。git/ssh协议下，将私密id_rsa.pub保存到GitHub上即可密码提交。
