@@ -3,10 +3,9 @@
 `$ apt-get install git-core`
 ##使用ssh-key实现远程免密码登陆
 `$cd ~/.ssh`
-
 `$ssh-keygen -t rsa -C "wxw_it@163.com"`
-
-提示输入时，直接回车。然后就生成两个文件：id_rsa , id_rsa.pub。在GitHub上注册一个用户，然后进入SSH keys，把id_rsa.pub的内容复制进去保存即可。
+提示输入时，直接回车。然后就生成两个文件：id_rsa , id_rsa.pub。  
+在GitHub上注册一个用户，然后进入SSH keys，把id_rsa.pub的内容复制进去保存即可。
 ##测试连接是否成功
 `$ssh -T git@github.com`  
 `Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
@@ -21,12 +20,14 @@
 `Please make sure you have the correct access rights and the repository exists.`
 ##解决办法
 `$ vim .ssh/config`  
-`Host github.com`  
-`User wxw_it@163.com`  
-`Hostname ssh.github.com`  
-`PreferredAuthentications publickey`  
-`IdentityFile ~/.ssh/id_rsa`  
-`Port 443`
+```
+Host github.com
+User wxw_it@163.com
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 443
+```
 ##测试连接是否成功
 `$ssh -T git@github.com`
 `Hi wuxiwei! You've successfully authenticated, but GitHub does not provide shell access.`
