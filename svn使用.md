@@ -8,7 +8,8 @@
 4. 将改动的文件提交到版本库  
 `svn commit -m “LogMessage”`  
 5. 更新某个版本  
-`svn update`  
+`svn update`
+
 ##svn忽略文件办法
 假设想忽略文件temp  
 1. cd到temp所在的目录下：
