@@ -19,7 +19,7 @@ ssh-copy-id方法简单快捷
 如果连接服务器如果报错：Agent admitted failure to sgin using the key.  
 `$ssh-add`
 
-###关于git的ssh-key:解决本地多个ssh-key的问题
+###关于git的ssh-key解决本地多个ssh-key的问题
 本地配置两个ssh-key，一个连接sever，一个连接github，如何解决冲突。  
 为github配置新的key ，取名为github  
 `$ ssh-keygen -t rsa -C "xxx@gmail.com" -f ~/.ssh/github`  
