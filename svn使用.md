@@ -1,4 +1,4 @@
-##svn基本操作
+### svn基本操作
 1. 将文件checkout到本地目录  
 `$ svn checkout path`（path是服务器上的目录）  
 2. 往版本库中添加新的文件  
@@ -10,7 +10,7 @@
 5. 更新某个版本  
 `svn update`
 
-##svn忽略文件办法
+### svn忽略文件办法
 假设想忽略文件temp  
 1. cd到temp所在的目录下：  
 2. svn propedit svn:ignore .  
