@@ -31,13 +31,11 @@ MariaDB完全兼容MYSQL，包括API和命令行。CentOS 从7.x开始默认使�
 `[root@localhost wuxiwei]# systemctl stop mariadb`
 ###### 安装并配置PHP
 `[root@localhost wuxiei]# yum install php php-cli php-pear php-pdo php-mysqlnd php-gd php-mbstring php-mcrypt php-xml`  
-
 CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP源码提供的MYSQL驱动数据库。  
 
 很多时候会对PHP环境要求校新的版本，例如PHP5.6环境，记录一种通过yum工具安装最新PHP版本的方法。首先，需要在系统上安装一个扩展yum源，即epel源。可从http://fedoraproject.org/wiki/EPEL 网站下载并安装。  
 `[root@localhost wuxiwei]# wget http://mirrors.neusoft.edu.cn/epel/7/x86_64/e/epel-release-7-5.noarch.rpm`  
 `[root@localhost wuxiwei]# rpm -ivh epel-release-7-5.noarch.rpm`  
-
 接着，还需要一个REMI源，这个yum源提供了最新的PHP版本的下载和安装，它的官网http://rpms.famillecollet.com/ 。安装REMI源的过程如下。  
 `[root@localhost wuxiwei]# rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi`  
 `[root@localhost wuxiwei]# wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm`  
