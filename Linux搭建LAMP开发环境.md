@@ -1,86 +1,77 @@
 #### Linux安装LAMP开发环境及配置文件管理
 >Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.1和Ubuntu 14.04做为主机（L）  
->Linux下安装软件，最常见有源码安装方式、RPM/deb安装方式、yum/apt-get安装方式等，在这里使用yum/apt-get安装LAMP开发环境
+>Linux下安装软件，最常见有源码安装方式、RPM/deb安装方式、yum/apt-get安装方式等，在这里使用yum/apt-get安装LAMP开发环境  
 
 ##### CentOS 7.1 下安装LAMP开发环境及配置文件管理
-
 ###### 安装并配置Apache
+`[root@localhost ~]# yum install httpd`  
+默认安装的Apache版本为httpd-2.4.6-31.el7.centos.x86_64，默认配置文件主目录位于/etc/httpd下，/etc/httpd/conf/httpd.conf是Apache的主配置文件，Apache模块位于/usr/lib64/httpd/modules目录下，Apache模块的配置文件位于/etc/httpd/conf.modules.d目录下，设置禁用或开启模块可以通过修改该目录下每个文件，Web根目录位于/var/www/html目录下，日志文件位于/var/log/httpd目录下。  
+重点关注/etc/httpd目录。这个目录下，有个conf.d目录，默认情况下/etc/httpd/conf.d目录下所有的“.conf”结尾的文件都会被读取。因此，很多情况下不需要修改主配置文件/etc/httpd/conf/httpd.conf，而是在/etc/httpd/conf.d目录下新建一个以“.conf”结尾的文件来完成各种配置。  
+将Apache设置为开机自启动模式  
+`[root@localhost wuxiwei]# systemctl enable httpd`  
+关闭Apache服务  
+`[root@localhost wuxiwei]# systemctl stop httpd`  
+开启Apache服务  
 
-`[root@localhost ~]# yum install httpd`
+`[root@localhost wuxiwei]# systemctl start httpd`   
 
-默认安装的Apache版本为httpd-2.4.6-31.el7.centos.x86_64，默认配置文件主目录位于/etc/httpd下，/etc/httpd/conf/httpd.conf是Apache的主配置文件，Apache模块位于/usr/lib64/httpd/modules目录下，Apache模块的配置文件位于/etc/httpd/conf.modules.d目录下，设置禁用或开启模块可以通过修改该目录下每个文件，Web根目录位于/var/www/html目录下，日志文件位于/var/log/httpd目录下。
+重新加载httpd  
 
-重点关注/etc/httpd目录。这个目录下，有个conf.d目录，默认情况下/etc/httpd/conf.d目录下所有的“.conf”结尾的文件都会被读取。因此，很多情况下不需要修改主配置文件/etc/httpd/conf/httpd.conf，而是在/etc/httpd/conf.d目录下新建一个以“.conf”结尾的文件来完成各种配置。
-
-将Apache设置为开机自启动模式
-
-`[root@localhost wuxiwei]# systemctl enable httpd`
-
-关闭Apache服务
-
-`[root@localhost wuxiwei]# systemctl stop httpd`
-
-开启Apache服务
-
-`[root@localhost wuxiwei]# systemctl start httpd` 
-
-重新加载httpd
-
-`[root@localhost wuxiwei]# systemctl reload httpd`
+`[root@localhost wuxiwei]# systemctl reload httpd`  
 
 ###### 安装并配置MariaDB（MYSQL）
 
-`[root@localhost wuxiei]# yum install mariadb-server mariadb`
+`[root@localhost wuxiei]# yum install mariadb-server mariadb`  
 
-MariaDB完全兼容MYSQL，包括API和命令行。CentOS 从7.x开始默认使用MariaDB。
+MariaDB完全兼容MYSQL，包括API和命令行。CentOS 从7.x开始默认使用MariaDB。  
 
-通过内置的安全配置脚本可实现对数据库的安全保护
+通过内置的安全配置脚本可实现对数据库的安全保护  
 
-`[root@localhost wuxiwei]# /usr/bin/mysql_secure_installation`
+`[root@localhost wuxiwei]# /usr/bin/mysql_secure_installation`  
 
-将MariaDB设置为开机启动
+将MariaDB设置为开机启动  
 
-`[root@localhost wuxiwei]# systemctl enable mariadb`
+`[root@localhost wuxiwei]# systemctl enable mariadb`  
 
-开启MariaDB服务
+开启MariaDB服务  
 
-`[root@localhost wuxiwei]# systemctl start mariadb`
+`[root@localhost wuxiwei]# systemctl start mariadb`  
 
-关闭MariaDB服务
+关闭MariaDB服务  
 
 `[root@localhost wuxiwei]# systemctl stop mariadb`
 
 ###### 安装并配置PHP
 
-`[root@localhost wuxiei]# yum install php php-cli php-pear php-pdo php-mysqlnd php-gd php-mbstring php-mcrypt php-xml`
+`[root@localhost wuxiei]# yum install php php-cli php-pear php-pdo php-mysqlnd php-gd php-mbstring php-mcrypt php-xml`  
 
-CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP源码提供的MYSQL驱动数据库。
+CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP源码提供的MYSQL驱动数据库。  
 
-很多时候会对PHP环境要求校新的版本，例如PHP5.6环境，记录一种通过yum工具安装最新PHP版本的方法。首先，需要在系统上安装一个扩展yum源，即epel源。可从http://fedoraproject.org/wiki/EPEL 网站下载并安装。
+很多时候会对PHP环境要求校新的版本，例如PHP5.6环境，记录一种通过yum工具安装最新PHP版本的方法。首先，需要在系统上安装一个扩展yum源，即epel源。可从http://fedoraproject.org/wiki/EPEL 网站下载并安装。  
 
-`[root@localhost wuxiwei]# wget http://mirrors.neusoft.edu.cn/epel/7/x86_64/e/epel-release-7-5.noarch.rpm`
+`[root@localhost wuxiwei]# wget http://mirrors.neusoft.edu.cn/epel/7/x86_64/e/epel-release-7-5.noarch.rpm`  
 
-`[root@localhost wuxiwei]# rpm -ivh epel-release-7-5.noarch.rpm`
+`[root@localhost wuxiwei]# rpm -ivh epel-release-7-5.noarch.rpm`  
 
-接着，还需要一个REMI源，这个yum源提供了最新的PHP版本的下载和安装，它的官网http://rpms.famillecollet.com/ 。安装REMI源的过程如下。
+接着，还需要一个REMI源，这个yum源提供了最新的PHP版本的下载和安装，它的官网http://rpms.famillecollet.com/ 。安装REMI源的过程如下。  
 
-`[root@localhost wuxiwei]# rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi`
+`[root@localhost wuxiwei]# rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi`  
 
-`[root@localhost wuxiwei]# wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm`
+`[root@localhost wuxiwei]# wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm`  
 
-`[root@localhost wuxiwei]# rpm -ivh remi-release-7.rpm`
+`[root@localhost wuxiwei]# rpm -ivh remi-release-7.rpm`  
 
-默认情况下，REMI是禁用的，防止多个yum源发生冲突。可以通过命令查看REMI源是否成功安装
+默认情况下，REMI是禁用的，防止多个yum源发生冲突。可以通过命令查看REMI源是否成功安装  
 
-`[root@localhost wuxiwei]# yum repolist disabled | grep remi`
+`[root@localhost wuxiwei]# yum repolist disabled | grep remi`  
 
-搜索REMI源仓库中可用的包
+搜索REMI源仓库中可用的包  
 
-`[root@localhost wuxiwei]# yum --enablerepo=remi list php`
+`[root@localhost wuxiwei]# yum --enablerepo=remi list php`  
 
-`[root@localhost wuxiwei]# yum --enablerepo=remi-php56 list php`
+`[root@localhost wuxiwei]# yum --enablerepo=remi-php56 list php`  
 
-通过REMI源安装需要的PHP版本，安装PHP5.6版本。
+通过REMI源安装需要的PHP版本，安装PHP5.6版本。  
 
 `[root@localhost wuxiwei]# yum --enablerepo=remi-php56 install php`
 
@@ -88,45 +79,45 @@ CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP�
 
 ###### 安装并配置Apache
 
-`[root@localhost wuxiwei]# apt-get install apache2`
+`[root@localhost wuxiwei]# apt-get install apache2`  
 
-重启Apache服务
+重启Apache服务  
 
-`[root@localhost wuxiwei]# service apache2 restart`
+`[root@localhost wuxiwei]# service apache2 restart`  
 
 ###### 安装并配置PHP5
 
-`[root@localhost wuxiwei]# apt-get install php5`
+`[root@localhost wuxiwei]# apt-get install php5`  
 
-查看Apache是否已经正确配置PHP5
+查看Apache是否已经正确配置PHP5  
 
-`[root@localhost wuxiwei]# cat /etc/apache2/mods_enables/libphp5.so`
+`[root@localhost wuxiwei]# cat /etc/apache2/mods_enables/libphp5.so`  
 
-安装PHP5常用扩展
+安装PHP5常用扩展  
 
 `[root@localhost wuxiwei]# apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
 
 ###### 安装并配置MYSQL
 
-`[root@localhost wuxiwei]# apt-get install mysql-server`
+`[root@localhost wuxiwei]# apt-get install mysql-server`  
 
-查看PHP5和MYSQL是否可以正常数据交互
+查看PHP5和MYSQL是否可以正常数据交互  
 
-`[root@localhost wuxiwei]# cat /etc/php5.d/conf.d/mysql.ini`
+`[root@localhost wuxiwei]# cat /etc/php5.d/conf.d/mysql.ini`  
 
-手动安装PHP5对于MYSQL扩展
+手动安装PHP5对于MYSQL扩展  
 
-`[root@localhost wuxiwei]# apt-get install php5-mysql`
+`[root@localhost wuxiwei]# apt-get install php5-mysql`  
 
-重启MYSQL服务
+重启MYSQL服务  
 
 `[root@localhost wuxiwei]# service mysql restart`
 
 ###### 配置文件管理
 
-Apache配置文件位于/etc/apache2目录下，Apache加载配置首先加载/etc/apache2/apache2.conf文件，通过Include将其他配置文件载入，核心配置文件包括：mods-*** Apache模块；sites-*** 虚拟主机，其中关键词available表示可以使用的；enable表示已启用的，两者通过ln -s命令建立软连接。
+Apache配置文件位于/etc/apache2目录下，Apache加载配置首先加载/etc/apache2/apache2.conf文件，通过Include将其他配置文件载入，核心配置文件包括：mods-*** Apache模块；sites-*** 虚拟主机，其中关键词available表示可以使用的；enable表示已启用的，两者通过ln -s命令建立软连接。  
 
-PHP5配置文件位于/etc/php5目录下，核心配置文件php.ini。
+PHP5配置文件位于/etc/php5目录下，核心配置文件php.ini。  
 
 MYSQL配置文件位于/etc/mysql目录下，核心配置文件my.cnf，默认数据库存储位于/var/lin/mysql目录下。
 
