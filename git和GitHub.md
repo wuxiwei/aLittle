@@ -1,12 +1,12 @@
-### 使用git准备工作
-#### 安装git命令
+#### 使用git准备工作
+##### 安装git命令
 `$ apt-get install git-core`
-#### 配置用户信息
+##### 配置用户信息
 `$ git config --global user.name "wxw"`  
 `$ git config --global user.email wxw_it@163.com`
-#### 检查已有的配置信息
+##### 检查已有的配置信息
 `git config --list`
-#### 使用ssh-key实现远程免密码提交（只针对git/ssh协议）
+##### 使用ssh-key实现远程免密码提交（只针对git/ssh协议）
 `$ cd ~/.ssh`  
 `$ ssh-keygen -t rsa -C "wxw_it@163.com"`  
 提示输入时，直接回车。然后就生成两个文件：id_rsa , id_rsa.pub。  
