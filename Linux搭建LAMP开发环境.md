@@ -1,10 +1,10 @@
-### Linux安装LAMP开发环境及配置文件管理
+#### Linux安装LAMP开发环境及配置文件管理
 >Linux主要分为两大系发行版，分别是RedHat和Debian，lamp环境的安装和配置也会有所不同，所以分别以CentOS 7.1和Ubuntu 14.04做为主机（L）  
 >Linux下安装软件，最常见有源码安装方式、RPM/deb安装方式、yum/apt-get安装方式等，在这里使用yum/apt-get安装LAMP开发环境
 
-#### CentOS 7.1 下安装LAMP开发环境及配置文件管理
+##### CentOS 7.1 下安装LAMP开发环境及配置文件管理
 
-##### 安装并配置Apache
+###### 安装并配置Apache
 
 `[root@localhost ~]# yum install httpd`
 
@@ -28,7 +28,7 @@
 
 `[root@localhost wuxiwei]# systemctl reload httpd`
 
-##### 安装并配置MariaDB（MYSQL）
+###### 安装并配置MariaDB（MYSQL）
 
 `[root@localhost wuxiei]# yum install mariadb-server mariadb`
 
@@ -50,7 +50,7 @@ MariaDB完全兼容MYSQL，包括API和命令行。CentOS 从7.x开始默认使�
 
 `[root@localhost wuxiwei]# systemctl stop mariadb`
 
-##### 安装并配置PHP
+###### 安装并配置PHP
 
 `[root@localhost wuxiei]# yum install php php-cli php-pear php-pdo php-mysqlnd php-gd php-mbstring php-mcrypt php-xml`
 
@@ -84,9 +84,9 @@ CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP�
 
 `[root@localhost wuxiwei]# yum --enablerepo=remi-php56 install php`
 
-#### Ubuntu 14.04 下安装LAMP开发环境及配置文件管理
+##### Ubuntu 14.04 下安装LAMP开发环境及配置文件管理
 
-##### 安装并配置Apache
+###### 安装并配置Apache
 
 `[root@localhost wuxiwei]# apt-get install apache2`
 
@@ -94,7 +94,7 @@ CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP�
 
 `[root@localhost wuxiwei]# service apache2 restart`
 
-##### 安装并配置PHP5
+###### 安装并配置PHP5
 
 `[root@localhost wuxiwei]# apt-get install php5`
 
@@ -106,7 +106,7 @@ CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP�
 
 `[root@localhost wuxiwei]# apt-get install php5-gd curl libcurl3 libcurl3-dev php5-curl`
 
-##### 安装并配置MYSQL
+###### 安装并配置MYSQL
 
 `[root@localhost wuxiwei]# apt-get install mysql-server`
 
@@ -122,7 +122,7 @@ CentOS 7.1版本中，默认安装PHP为PHP5.4版本，其中php-mysqlnd是PHP�
 
 `[root@localhost wuxiwei]# service mysql restart`
 
-##### 配置文件管理
+###### 配置文件管理
 
 Apache配置文件位于/etc/apache2目录下，Apache加载配置首先加载/etc/apache2/apache2.conf文件，通过Include将其他配置文件载入，核心配置文件包括：mods-*** Apache模块；sites-*** 虚拟主机，其中关键词available表示可以使用的；enable表示已启用的，两者通过ln -s命令建立软连接。
 
@@ -132,7 +132,7 @@ MYSQL配置文件位于/etc/mysql目录下，核心配置文件my.cnf，默认�
 
 ***
 
-#### Apache虚拟主机配置
+##### Apache虚拟主机配置
 * CentOS 7.0 在/etc/httpd/conf.d目录下新建wuxiwei.conf文件，并重启apache。
 * Ubuntu 14.04 在/etc/apache2/sites-available目录下新建wuxiwei.conf文件，同时在/etc/apache2/sites-enabled目录下创建软链接到wuxiwei.conf文件，并重启apache。
 * wuxiwei.conf文件内容基本如下。
