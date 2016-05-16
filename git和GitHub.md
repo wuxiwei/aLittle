@@ -1,4 +1,4 @@
-##使用git准备工作
+## 使用git准备工作
 
 ####安装git命令
 `$ apt-get install git-core`
