@@ -11,6 +11,7 @@ $ touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
 ```
 ##### 第二步 为用户git的authorized_keys文件添加一些开发者的SSH公钥。
 公钥获取： 开发用户到家目录，进入.ssh文件夹，找到id_dsa.pub命名的文件，内容就是SSH公钥。如果没有，运行ssh-keyen程序来创建。  
+
 将获取的公钥发送复制到服务器的authorized_keys文件中。  
 ##### 第三步 确定存放git仓库的位置，并创建仓库。
 我们使用git家目录作为存放git的仓库，执行创建Test.git仓库的命令（git仓库建议用.git后缀）。
@@ -59,4 +60,5 @@ git:x:1001:1001:,,,:/home/git/usr/bin/git-shell
 git --work-tree=/var/www/html/Test checkout -f
 ```
 注意：--work-tree对应web站点目录。同样为了写入数据最好将站点目录的所属和权限给到git用户。  
+
 然后就可以开始在本地版本库工作区里开发，然后使用git push指令推送到远程版本库，钩子post-receive会自动生效，将文件检出到--work-tree目录里，实现同步。
