@@ -10,7 +10,7 @@
 * 去掉中横杠，将正斜杠替换为反斜杠;  
 * 增加Controller后缀;  
 * 在前面增加yii\base\Application::controllerNamespace控制器命名空间.  
-下面为一些示例，假设yii\base\Application::controllerNamespace控制器命名空间为 app\controllers:
+下面为一些示例，假设yii\base\Application::controllerNamespace控制器命名空间为 app\controllers:  
 * `article` 对应 `app\controllers\ArticleController`;
 * `post-comment` 对应 `app\controllers\PostCommentController`;
 * `admin/post-comment` 对应 `app\controllers\admin\PostCommentController`;
