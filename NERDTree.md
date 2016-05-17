@@ -1,4 +1,4 @@
-#### 常用NERDTree 快捷键
+#### 常用 NERDTree 快捷键
 切换工作台和目录  
 ctrl + w + h 光标 focus 左侧树形目录  
 ctrl + w + l 光标 focus 右侧文件显示窗口  
