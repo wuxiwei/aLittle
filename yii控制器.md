@@ -197,23 +197,18 @@ class SiteController extends Controller
 处理一个请求时，应用主体会根据请求路由创建一个控制器，控制器经过以下生命周期来完成请求：  
 1. 在控制器创建和配置后，yii\base\Controller::init() 方法会被调用。  
 2. 控制器根据请求操作ID创建一个操作对象:  
-* 如果操作ID没有指定，会使用yii\base\Controller::defaultAction默认操作ID；
-* 如果在yii\base\Controller::actions()找到操作ID，会创建一个独立操作；
-* 如果操作ID对应操作方法，会创建一个内联操作；
-* 否则会抛出yii\base\InvalidRouteException异常。  
-
+- 如果操作ID没有指定，会使用yii\base\Controller::defaultAction默认操作ID；
+- 如果在yii\base\Controller::actions()找到操作ID，会创建一个独立操作；
+- 如果操作ID对应操作方法，会创建一个内联操作；
+- 否则会抛出yii\base\InvalidRouteException异常。  
 3. 控制器按顺序调用应用主体、模块（如果控制器属于模块）、控制器的`beforeAction()`方法；  
-* 如果任意一个调用返回false，后面未调用的`beforeAction()`会跳过并且操作执行会被取消； action execution will be cancelled.
-* 默认情况下每个`beforeAction()`方法会触发一个`beforeAction`事件，在事件中你可以追加事件处理操作；  
-
+- 如果任意一个调用返回false，后面未调用的`beforeAction()`会跳过并且操作执行会被取消； action execution will be cancelled.
+- 默认情况下每个`beforeAction()`方法会触发一个`beforeAction`事件，在事件中你可以追加事件处理操作；  
 4. 控制器执行操作:  
-* 请求数据解析和填入到操作参数；  
-
+- 请求数据解析和填入到操作参数；  
 5. 控制器按顺序调用控制器、模块（如果控制器属于模块）、应用主体的`afterAction()`方法；  
-* 默认情况下每个`afterAction()`方法会触发一个`afterAction`事件，在事件中你可以追加事件处理操作；  
-
+- 默认情况下每个`afterAction()`方法会触发一个`afterAction`事件，在事件中你可以追加事件处理操作；  
 6. 应用主体获取操作结果并赋值给响应.  
-
 #### 最佳实践
 在设计良好的应用中，控制器很精练，包含的操作代码简短； 如果你的控制器很复杂，通常意味着需要重构，转移一些代码到其他类中。  
 
