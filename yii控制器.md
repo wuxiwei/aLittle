@@ -9,7 +9,7 @@
 * 将用正斜杠区分的每个单词第一个字母转为大写。注意如果控制器ID包含正斜杠，只将最后的正斜杠后的部分第一个字母转为大写；  
 * 去掉中横杠，将正斜杠替换为反斜杠;  
 * 增加Controller后缀;  
-* 在前面增加yii\base\Application::controllerNamespace控制器命名空间.
+* 在前面增加yii\base\Application::controllerNamespace控制器命名空间.  
 下面为一些示例，假设yii\base\Application::controllerNamespace控制器命名空间为 app\controllers:
 * `article` 对应 `app\controllers\ArticleController`;
 * `post-comment` 对应 `app\controllers\PostCommentController`;
