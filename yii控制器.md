@@ -88,6 +88,7 @@ class SiteController extends Controller
 
 例如`index`转成`actionIndex`,`hello-world`转成`actionHelloWorld`。
 >注意: 操作方法的名字大小写敏感，如果方法名称为ActionIndex不会认为是操作方法， 所以请求index操作会返回一个异常，也要注意操作方法必须是公有的，私有或者受保护的方法不能定义成内联操作。
+
 因为容易创建，内联操作是最常用的操作，但是如果你计划在不同地方重用相同的操作， 或者你想重新分配一个操作，需要考虑定义它为独立操作。  
 ##### 独立操作
 独立操作通过继承yii\base\Action或它的子类来定义。 例如Yii发布的yii\web\ViewAction和yii\web\ErrorAction都是独立操作。  
@@ -193,27 +194,27 @@ class SiteController extends Controller
 }
 ```
 #### 控制器生命周期
-处理一个请求时，应用主体会根据请求路由创建一个控制器，控制器经过以下生命周期来完成请求：
-1. 在控制器创建和配置后，yii\base\Controller::init() 方法会被调用。
-2. 控制器根据请求操作ID创建一个操作对象:
-   * 如果操作ID没有指定，会使用yii\base\Controller::defaultAction默认操作ID；
-   * 如果在yii\base\Controller::actions()找到操作ID，会创建一个独立操作；
-   * 如果操作ID对应操作方法，会创建一个内联操作；
-   * 否则会抛出yii\base\InvalidRouteException异常。
-3. 控制器按顺序调用应用主体、模块（如果控制器属于模块）、控制器的`beforeAction()`方法；
-   * 如果任意一个调用返回false，后面未调用的`beforeAction()`会跳过并且操作执行会被取消； action execution will be cancelled.
-   * 默认情况下每个`beforeAction()`方法会触发一个`beforeAction`事件，在事件中你可以追加事件处理操作；
-4. 控制器执行操作:
-   * 请求数据解析和填入到操作参数；
-5. 控制器按顺序调用控制器、模块（如果控制器属于模块）、应用主体的`afterAction()`方法；
-   * 默认情况下每个`afterAction()`方法会触发一个`afterAction`事件，在事件中你可以追加事件处理操作；
-6. 应用主体获取操作结果并赋值给响应.
+处理一个请求时，应用主体会根据请求路由创建一个控制器，控制器经过以下生命周期来完成请求：  
+1. 在控制器创建和配置后，yii\base\Controller::init() 方法会被调用。  
+2. 控制器根据请求操作ID创建一个操作对象:  
+* 如果操作ID没有指定，会使用yii\base\Controller::defaultAction默认操作ID；
+* 如果在yii\base\Controller::actions()找到操作ID，会创建一个独立操作；
+* 如果操作ID对应操作方法，会创建一个内联操作；
+* 否则会抛出yii\base\InvalidRouteException异常。
+3. 控制器按顺序调用应用主体、模块（如果控制器属于模块）、控制器的`beforeAction()`方法；  
+* 如果任意一个调用返回false，后面未调用的`beforeAction()`会跳过并且操作执行会被取消； action execution will be cancelled.
+* 默认情况下每个`beforeAction()`方法会触发一个`beforeAction`事件，在事件中你可以追加事件处理操作；
+4. 控制器执行操作:  
+* 请求数据解析和填入到操作参数；
+5. 控制器按顺序调用控制器、模块（如果控制器属于模块）、应用主体的`afterAction()`方法；  
+* 默认情况下每个`afterAction()`方法会触发一个`afterAction`事件，在事件中你可以追加事件处理操作；
+6. 应用主体获取操作结果并赋值给响应.  
 #### 最佳实践
 在设计良好的应用中，控制器很精练，包含的操作代码简短； 如果你的控制器很复杂，通常意味着需要重构，转移一些代码到其他类中。  
 
 归纳起来，控制器
-    * 可访问 请求 数据;
-    * 可根据请求数据调用 模型 的方法和其他服务组件;
-    * 可使用 视图 构造响应;
-    * 不应处理应被模型处理的请求数据;
-    * 应避免嵌入HTML或其他展示代码，这些代码最好在 视图中处理.
+* 可访问 请求 数据;
+* 可根据请求数据调用 模型 的方法和其他服务组件;
+* 可使用 视图 构造响应;
+* 不应处理应被模型处理的请求数据;
+* 应避免嵌入HTML或其他展示代码，这些代码最好在 视图中处理.
