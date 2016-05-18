@@ -129,11 +129,12 @@ class ListWidget extends Widget
 * yii\base\View::render(): 渲染一个视图名.
 * yii\web\View::renderAjax(): 渲染一个视图名并注入所有注册的JS/CSS脚本和文件，通常使用在响应AJAX网页请求的情况下。
 * yii\base\View::renderFile(): 渲染一个视图文件目录或别名下的视图文件。
+
 例如，视图中的如下代码会渲染该视图所在目录下的`_overview.php`视图文件，记住视图中`$this`对应 yii\base\View 组件:
 ```
 <?= $this->render('_overview') ?>
 ```
-其他地方渲染  
+###### 其他地方渲染  
 在任何地方都可以通过表达式`Yii::$app->view`访问yii\base\View应用组件，调用它的如前所述的方法渲染视图，例如：
 ```
     // 显示视图文件 "@app/views/site/license.php"
