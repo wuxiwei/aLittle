@@ -54,7 +54,7 @@ use yii\helpers\HtmlPurifier;
 * 控制器渲染的视图文件默认放在`@app/views/ControllerID`目录下，其中`ControllerID`对应控制器ID，例如控制器类为`PostController`，视图文件目录应为`@app/views/post`，控制器类`PostCommentController`对应的目录为`@app/views/post-comment，`如果是模块中的控制器，目录应为`yii\base\Module::basePath`模块目录下的`views/ControllerID`目录；
 * 对于小部件渲染的视图文件默认放在`WidgetPath/views`目录，其中`WidgetPath`代表小部件类文件所在的目录；
 * 对于其他对象渲染的视图文件，建议遵循和小部件相似的规则。  
-可覆盖控制器或小部件的yii\base\ViewContextInterface::getViewPath()方法来自定义视图文件默认目录。
+可覆盖控制器或小部件的yii\base\ViewContextInterface::getViewPath()方法来自定义视图文件默认目录。  
 ##### 渲染视图
 可在控制器,小部件,或其他地方调用渲染视图方法来渲染视图，该方法类似以下格式：
 ```
