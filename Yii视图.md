@@ -101,6 +101,7 @@ class PostController extends Controller
 在小部件中，可调用以下小部件方法来渲染视图
 * yii\base\Widget::render(): 渲染一个 视图名.
 * yii\base\Widget::renderFile(): 渲染一个视图文件目录或别名下的视图文件。
+
 例如：
 ```
 namespace app\components;
