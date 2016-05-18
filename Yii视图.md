@@ -241,12 +241,14 @@ class PostController extends Controller
 由于`layout`可在不同层级（控制器、模块，应用）配置，在幕后Yii使用两步来决定控制器实际使用的布局。  
 第一步，它决定布局的值和上下文模块：  
 * 如果控制器的yii\base\Controller::layout属性不为空null，使用它作为布局的值，控制器的yii\base\Controller::module模块作为上下文模块。
-* 如果yii\base\Controller::layout为空，从控制器的祖先模块（包括应用）开始找第一个yii\base\Module::layout属性不为空的模块，使用该模块作为上下文模块，并将它的yii\base\Module::layout的值作为布局的值， 如果都没有找到，表示不使用布局。  
+* 如果yii\base\Controller::layout为空，从控制器的祖先模块（包括应用）开始找第一个yii\base\Module::layout属性不为空的模块，使用该模块作为上下文模块，并将它的yii\base\Module::layout的值作为布局的值， 如果都没有找到，表示不使用布局。
+
 第二步，它决定第一步中布局的值和上下文模块对应到实际的布局文件，布局的值可为：  
 * 路径别名(如`@app/views/layouts/main`).
 * 绝对路径(如`/main`): 布局的值以斜杠开始，在应用的[[yii\base\Application::layoutPath|layout path]布局路径中查找实际的布局文件，布局路径默认为`@app/views/layouts`。
 * 相对路径(如`main`): 在上下文模块的yii\base\Module::layoutPath布局路径中查找实际的布局文件，布局路径默认为yii\base\Module::basePath模块目录下的`views/layouts`目录。
-* 布尔值`false`: 不使用布局。  
+* 布尔值`false`: 不使用布局。
+
 布局的值没有包含文件扩展名，默认使用`.php`作为扩展名。
 ###### 嵌套布局
 有时候你想嵌套一个布局到另一个，例如，在Web站点不同地方，想使用不同的布局，同时这些布局共享相同的生成全局HTML5页面结构的基本布局，可以在子布局中调用yii\base\View::beginContent()和yii\base\View::endContent()方法，如下所示：
