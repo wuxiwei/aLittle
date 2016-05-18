@@ -182,7 +182,6 @@ $this->params['breadcrumbs'][] = 'About Us';
 布局是一种特殊的视图，代表多个视图的公共部分，例如，大多数Web应用共享相同的页头和页尾， 在每个视图中重复相同的页头和页尾，更好的方式是将这些公共放到一个布局中，渲染内容视图后在合适的地方嵌入到布局中。
 ###### 创建布局
 由于布局也是视图，它可像普通视图一样创建，布局默认存储在`@app/views/layouts`路径下，模块中使用的布局应存储在yii\base\Module::basePath模块目录下的`views/layouts`路径下，可配置yii\base\Module::layoutPath来自定义应用或模块的布局默认路径。  
-
 如下示例为一个布局大致内容，注意作为示例，简化了很多代码， 在实际中，你可能想添加更多内容，如头部标签，主菜单等。
 ```
 <?php
@@ -217,6 +216,7 @@ use yii\helpers\Html;
 * yii\web\View::head(): 该方法应在HTML页面的`<head>`标签中调用，它生成一个占位符，在页面渲染结束时会被注册的头部HTML代码（如link标签, meta标签）替换。
 * yii\web\View::beginBody(): 该方法应在`<body>`标签的开始处调用，它触发yii\web\View::EVENT_BEGIN_BODY事件并生成一个占位符，会被注册的HTML代码（如JavaScript）在页面主体开始处替换。
 * yii\web\View::endBody(): 该方法应在`<body>`标签的结尾处调用， 它触发 yii\web\View::EVENT_END_BODY 事件并生成一个占位符， 会被注册的HTML代码（如JavaScript）在页面主体结尾处替换。
+
 ###### 布局中访问数据 
 在布局中可访问两个预定义变量：`$this`和`$content`，前者对应和普通视图类似的yii\base\View视图组件后者包含调用yii\base\Controller::render()方法渲染内容视图的结果。  
 如果想在布局中访问其他数据，必须使用视图中访问数据一节介绍的拉取方式，如果想从内容视图中传递数据到布局，可使用视图间共享数据一节中的方法。
