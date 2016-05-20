@@ -103,3 +103,4 @@ Errorlog /var/log/httpd/wuxiwei_error.log
 CustomLog /vat/log/httpd/wuxiwei_access.log combined
 </VirtualHost>
 ```
+>注意：可能在配置虚拟主机以后，无法通过localhost或者127.0.0.1访问到apache原先的默认www路径，因为Apache在没有捕获到的主机名，默认使用第一个虚拟主机。如果想要继续访问，需将localhost设置成第一个虚拟主机访问（直接在主配置文件设置即可）。
