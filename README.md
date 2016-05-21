@@ -6,3 +6,7 @@
 5. [ssh-key免密码说明](https://github.com/wuxiwei/aLittle/blob/master/ssh-key%E5%85%8D%E5%AF%86%E7%A0%81%E8%AF%B4%E6%98%8E.md)
 6. [Yii控制器](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%8E%A7%E5%88%B6%E5%99%A8.md)
 7. [NERDTree快捷键](https://github.com/wuxiwei/aLittle/blob/master/NERDTree.md)
+8. [Yii模型](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%A8%A1%E5%9E%8B.md)
+9. [Yii视图](https://github.com/wuxiwei/aLittle/blob/master/Yii%E8%A7%86%E5%9B%BE.md)
+10. [Yii框架中属性概念及Object基类的分析](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%A1%86%E6%9E%B6%E4%B8%AD%E5%B1%9E%E6%80%A7%E6%A6%82%E5%BF%B5%E5%8F%8AObject%E5%9F%BA%E7%B1%BB%E7%9A%84%E5%88%86%E6%9E%90.md)
+
