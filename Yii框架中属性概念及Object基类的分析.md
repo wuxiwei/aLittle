@@ -158,34 +158,41 @@ public static function configure($object, $properties)
 那么，怎么实现呢？秘密在于setter函数。由于`$app`在进行配置时，最终会调用`Yii::configure()`函数。该函数又不区分配置项是简单的数值还是数组，就直接使用`$object->$name = $value`完成属性的赋值。那么，对于对象属性，其配置值`$value`是一个数组，为了使其正确配置。你需要在其setter函数上做出正确的处理方式。Yii应用`yii\web\Application`就是依靠定义专门的setter函数，实现自动处理配置项的。比如，我们在Yii的配置文件中，可以看到一个配置项`components`，一般情况下，他的内容是这样的:
 ```
 'components' => [
-'request' => [
-        // !!! insert a secret key in the following (if it is empty) -
+        'request' => [
+                // !!! insert a secret key in the following (if it is empty) -
                 // this is required by cookie validation
-                        'cookieValidationKey' => 'v7mBbyetv4ls7t8UIqQ2IBO60jY_wf_U',
-                            
-],
-'user' => [
-        'identityClass' => 'common\models\User',
+                'cookieValidationKey' => 'v7mBbyetv4ls7t8UIqQ2IBO60jY_wf_U',
+        ],
+        'user' => [
+                'identityClass' => 'common\models\User',
                 'enableAutoLogin' => true,
-                    
-],
-'log' => [
-        'traceLevel' => YII_DEBUG ? 3 : 0,
-        'targets' => [
-        [
-                        'class' => 'yii\log\FileTarget',
-                                        'levels' => ['error', 'warning'],
-                                                    
         ],
-                
+        'log' => [
+                'traceLevel' => YII_DEBUG ? 3 : 0,
+                'targets' => [
+                [
+                       'class' => 'yii\log\FileTarget',
+                      'levels' => ['error', 'warning'],
+                ],
+                ],
         ],
-            
+        'errorHandler' => [
+                'errorAction' => 'site/error',
+        ],
 ],
-'errorHandler' => [
-        'errorAction' => 'site/error',
-            
-],
-
-],
-
 ```
+这是一个典型嵌套配置数组。那么Yii是如何把他们配置好的呢？ Yii定义了一个名为`setComponents`的setter函数。当然，Yii并未将该函数放在`yii\web\Application`里，而是放在父类`yii\di\ServiceLocator`里面。（具体可以查看服务定位器（Service Locator））
+```
+public function setComponents($components)
+{
+    foreach ($components as $id => $component) {
+        $this->set($id, $component);
+    }
+}
+```
+#### Object和属性总结
+从`yii\base\Object::__construct()`来看，对于所有Object，包括Component的属性，都经历这么4个阶段：
+1. 预初始化阶段。这是最开始的阶段，就是在构造函数`__construct()`的开头可以设置property的默认值。
+2. 对象配置阶段。也就是前面提到构造函数调用`Yii::configure($this, $config)`阶段。这一阶段可以覆盖前一阶段设置的property的默认值，并补充没有默认值的参数，也就是必备参数。`$config`通常由外部代码传入或者通过配置文件传入。
+3. 后初始化阶段。也就是构造函数调用`init()`成员函数。通过在`init()`写入代码，可以对配置阶段设置的值进行检查，并规范类的property。
+4. 类方法调用阶段。前面三个阶段是不可分的，由类的构造函数一口气调用的。也就是说一个类一但实例化，那么就至少经历了前三个阶段。 此时，该对象的状态是确定且可靠的，不存在不确定的property。所有的属性要么是默认值，要么是传入的配置值，如果传入的配置有误或者冲突，那么也经过了检查和规范。
