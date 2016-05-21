@@ -355,5 +355,6 @@ Yii::$app->on('bar', function ($event) {
 
 Yii::$app->trigger('bar', new Event(['sender' => $this]));
 ```
-上面的`Yii::$app->on()`可以在任何地方调用，就可以完成事件的绑定。而`Yii::$app->trigger()`只要在绑定之后的任何时候调用就OK了。
+上面的`Yii::$app->on()`可以在任何地方调用，就可以完成事件的绑定。而`Yii2.0i::$app->trigger()`只要在绑定之后的任何时候调用就OK了。
 
+引用：[事件（Event） — 深入理解Yii2.0](http://www.digpage.com/event.html)
