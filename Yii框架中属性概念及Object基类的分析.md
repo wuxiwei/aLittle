@@ -97,7 +97,7 @@ class Post extends yii\base\Object    // 第一步：继承自 yii\base\Object
 * `canGetProperty()`测试一个属性是否可读，参数`$checkVars`的意义同上。只要定义了getter，属性即可读。同时，如果`$checkVars`为`true`。那么只要类定义了成员变量，不管是public，private还是protected，都认为是可读。
 * `canSetProperty()`测试一个属性是否可写，参数`$checkVars`的意义同上。只要定义了setter，属性即可写。同时，在`$checkVars`为`ture`。那么只要类定义了成员变量，不管是public，private还是protected，都认为是可写。
 
-#### Object和Component¶
+#### Object和Component
 `yii\base\Component`继承自`yii\base\Object`，因此，他也具有属性等基本功能。  
 但是，由于Componet还引入了事件、行为，因此，它并非简单继承了Object的属性实现方式，而是基于同样的机制，重载了`__get()``__set()`等函数。但从实现机制上来讲，是一样的。这个不影响理解。  
 官方将Yii定位于一个基于组件的框架。可见组件这一概念是Yii的基础。如果你有兴趣阅读Yii的源代码或是API文档，你将会发现，Yii几乎所有的核心类都派生于（继承自）`yii\base\Component` 。  
@@ -191,7 +191,7 @@ public function setComponents($components)
 }
 ```
 #### Object和属性总结
-从`yii\base\Object::__construct()`来看，对于所有Object，包括Component的属性，都经历这么4个阶段：
+从`yii\base\Object::__construct()`来看，对于所有Object，包括Component的属性，都经历这么4个阶段：  
 1. 预初始化阶段。这是最开始的阶段，就是在构造函数`__construct()`的开头可以设置property的默认值。
 2. 对象配置阶段。也就是前面提到构造函数调用`Yii::configure($this, $config)`阶段。这一阶段可以覆盖前一阶段设置的property的默认值，并补充没有默认值的参数，也就是必备参数。`$config`通常由外部代码传入或者通过配置文件传入。
 3. 后初始化阶段。也就是构造函数调用`init()`成员函数。通过在`init()`写入代码，可以对配置阶段设置的值进行检查，并规范类的property。
