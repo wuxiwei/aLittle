@@ -173,3 +173,5 @@ require(__DIR__ . '/../../vendor/autoload.php');
 这个其实是Composer提供的autoloader。Yii使用Composer来作为包依赖管理器，因此，建议保留Composer的autoloader，尽管Yii的autoloader也能自动加载使用Composer安装的第三方库、扩展等，而且更为高效。但考虑到毕竟是人家安装的，人家还有一套自己专门的规则，从维护性、兼容性、扩展性来考虑，建议保留Composer的autoloader。  
 如果还有其他的autoloader，一定要在Yii的autoloader注册之前完成注册，以保证Yii的autoloader总是最先被调用。  
 如果你有自己的autoloader，也可以不安装Yii的autoloaer，只是这样未必能有Yii的高效，且还需要遵循一套类似的类命名和加载的规则。就个人的经验而言，Yii的autoloader完全够用，没必要自己重复造轮子。
+
+引用：[Yii的类自动加载机制 — 深入理解Yii2.0](http://www.digpage.com/autoload.html)
