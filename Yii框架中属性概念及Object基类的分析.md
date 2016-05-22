@@ -5,12 +5,15 @@
 class NotAndGate extends Object{
     private $_key1;
     private $_key2;
+
     public function setKey1($value){
         $this->_key1 = $value;
     }
+
     public function setKey2($value){
         $this->_key2 = $value;
     }
+
     public function getOutput(){
         if (!$this->_key1 || !$this->_key2)
             return true;
@@ -36,10 +39,10 @@ public function __get($name)              // 这里$name是属性名
         return $this->$getter();          // 调用了getter函数
     } elseif (method_exists($this, 'set' . $name)) {
         throw new InvalidCallException('Getting write-only property: '
-                    . get_class($this) . '::' . $name);
+            . get_class($this) . '::' . $name);
     } else {
         throw new UnknownPropertyException('Getting unknown property: '
-                    . get_class($this) . '::' . $name);
+            . get_class($this) . '::' . $name);
     }
 }
 
@@ -50,14 +53,13 @@ public function __set($name, $value)
     if (method_exists($this, $setter)) {
         $this->$setter($value);          // 调用setter函数
     } elseif (method_exists($this, 'get' . $name)) {
-        throw new InvalidCallException('Setting read-only property: '
-                        . get_class($this) . '::' . $name);
+        throw new InvalidCallException('Setting read-only property: ' .
+            get_class($this) . '::' . $name);
     } else {
         throw new UnknownPropertyException('Setting unknown property: '
-                        . get_class($this) . '::' . $name);
+            . get_class($this) . '::' . $name);
     }
 }
-
 ```
 #### 实现属性的步骤
 我们都知道，`__get()``__set()`方法主要是来对私有成员变量的获取和赋值，以及在读写对象的一个不存在的成员变量时自动调用。Yii正是利用这点，提供对属性的支持的。从上面的代码中，可以看出，如果访问一个对象的某个属性，Yii会调用名为get属性名()的函数。如，`SomeObject->Foo`，会自动调用`SomeObject->getFoo()`。如果修改某一属性，会调用相应的setter函数。如，`SomeObject->Foo = $someValue`，会自动调用`SomeObject->setFoo($someValue)`。  
@@ -71,13 +73,15 @@ public function __set($name, $value)
 class Post extends yii\base\Object    // 第一步：继承自 yii\base\Object
 {
     private $_title;                 // 第二步：声明一个私有成员变量
+
     public function getTitle()       // 第三步：提供getter和setter
     {
-           return $this->_title;
+        return $this->_title;
     }
+
     public function setTitle($value)
     {
-           $this->_title = trim($value);
+        $this->_title = trim($value);
     }
 }
 ```
@@ -118,6 +122,7 @@ $config = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/../config/main.php'),
     require(__DIR__ . '/../config/main-local.php')
 );
+
 $application = new yii\web\Application($config);
 ```
 `$config`看着复杂，但本质上就是一个各种配置项的数组。Yii中就是统一使用数组的方式对对象进行配置，而实现这一切的关键就在`yii\base\Object`定义的构造函数中:
@@ -126,7 +131,6 @@ public function __construct($config = [])
 {
     if (!empty($config)) {
         Yii::configure($this, $config);
-            
     }
     $this->init();
 }
@@ -141,8 +145,9 @@ public function __construct($config = [])
 public static function configure($object, $properties)
 {
     foreach ($properties as $name => $value) {
-         $object->$name = $value;
+        $object->$name = $value;
     }
+
     return $object;
 }
 ```
@@ -158,27 +163,27 @@ public static function configure($object, $properties)
 那么，怎么实现呢？秘密在于setter函数。由于`$app`在进行配置时，最终会调用`Yii::configure()`函数。该函数又不区分配置项是简单的数值还是数组，就直接使用`$object->$name = $value`完成属性的赋值。那么，对于对象属性，其配置值`$value`是一个数组，为了使其正确配置。你需要在其setter函数上做出正确的处理方式。Yii应用`yii\web\Application`就是依靠定义专门的setter函数，实现自动处理配置项的。比如，我们在Yii的配置文件中，可以看到一个配置项`components`，一般情况下，他的内容是这样的:
 ```
 'components' => [
-        'request' => [
-                // !!! insert a secret key in the following (if it is empty) -
-                // this is required by cookie validation
-                'cookieValidationKey' => 'v7mBbyetv4ls7t8UIqQ2IBO60jY_wf_U',
+    'request' => [
+        // !!! insert a secret key in the following (if it is empty) -
+        // this is required by cookie validation
+        'cookieValidationKey' => 'v7mBbyetv4ls7t8UIqQ2IBO60jY_wf_U',
+    ],
+    'user' => [
+        'identityClass' => 'common\models\User',
+        'enableAutoLogin' => true,
+    ],
+    'log' => [
+        'traceLevel' => YII_DEBUG ? 3 : 0,
+        'targets' => [
+            [
+                'class' => 'yii\log\FileTarget',
+                'levels' => ['error', 'warning'],
+            ],
         ],
-        'user' => [
-                'identityClass' => 'common\models\User',
-                'enableAutoLogin' => true,
-        ],
-        'log' => [
-                'traceLevel' => YII_DEBUG ? 3 : 0,
-                'targets' => [
-                [
-                       'class' => 'yii\log\FileTarget',
-                      'levels' => ['error', 'warning'],
-                ],
-                ],
-        ],
-        'errorHandler' => [
-                'errorAction' => 'site/error',
-        ],
+    ],
+    'errorHandler' => [
+        'errorAction' => 'site/error',
+    ],
 ],
 ```
 这是一个典型嵌套配置数组。那么Yii是如何把他们配置好的呢？ Yii定义了一个名为`setComponents`的setter函数。当然，Yii并未将该函数放在`yii\web\Application`里，而是放在父类`yii\di\ServiceLocator`里面。（具体可以查看服务定位器（Service Locator））
