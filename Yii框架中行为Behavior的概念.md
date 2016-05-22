@@ -483,4 +483,4 @@ public function hasMethod($name)
 * 特性比行为在效率上要高一点，因为行为其实是类的实例，需要时间和空间进行分配。
 * 特性是PHP的语法，因此，IDE的支持要好一些。目前还没有IDE能支持行为。
 
-
+引用：[行为（Behavior） — 深入理解Yii2.0](http://www.digpage.com/behavior.html)
