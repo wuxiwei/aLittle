@@ -8,36 +8,38 @@
 #### Yii中与事件相关的类
 Yii中，事件是在`yii\base\Component`中引入的，注意，`yii\base\Object`不支持事件。所以，当你需要使用事件时，请从`yii\base\Component`进行继承。同时，Yii中还有一个与事件紧密相关的`yii\base\Event`，他封装了与事件相关的有关数据，并提供一些功能函数作为辅助:
 ```
-ass Event extends Object
+class Event extends Object
 {
     public $name;               // 事件名
     public $sender;             // 事件发布者，通常是调用了 trigger() 的对象或类。
     public $handled = false;    // 是否终止事件的后续处理
     public $data;               // 事件相关数据
+
     private static $_events = [];
-    public static function on($class, $name, $handler, $data = null, $append = true)
+
+    public static function on($class, $name, $handler, $data = null,
+        $append = true)
     {
-            // ... ...
-            // 用于绑定事件handler
+        // ... ...
+        // 用于绑定事件handler
     }
 
     public static function off($class, $name, $handler = null)
     {
-            // ... ...
-            // 用于取消事件handler绑定
+        // ... ...
+        // 用于取消事件handler绑定
     }
 
     public static function hasHandlers($class, $name)
     {
-            // ... ...
-            // 用于判断是否有相应的handler与事件对应
-                        
+        // ... ...
+        // 用于判断是否有相应的handler与事件对应
     }
 
     public static function trigger($class, $name, $event = null)
     {
-            // ... ...
-            // 用于触发事件
+        // ... ...
+        // 用于触发事件
     }
 }
 ```
@@ -74,6 +76,7 @@ $person->on(Person::EVENT_GREET, ['app\helper\Greet', 'say_hello']);
 $person->on(Person::EVENT_GREET, function ($event) {
     echo 'Hello';
 });
+
 ```
 事件的绑定可以像上面这样在运行时以代码的形式进行绑定，也可以在配置中进行绑定。当然，这个配置生效的过程其实也是在运行时的。  
 上面的例子只是简单的绑定了事件与事件handler，如果有额外的数据传递给handler，可以使用`yii\base\Component::on()`的第三个参数。这个参数将会写进`Event`的相关数据字段，即属性`data`。如:
@@ -84,7 +87,6 @@ $person->on(Person::EVENT_GREET, 'person_say_hello', 'Hello World!');
 function person_say_hello($event)
 {
     echo $event->data;                // 将显示 Hello World!
-
 }
 ```
 yii\base\Component 维护了一个handler数组，用来保存绑定的handler:
@@ -97,9 +99,9 @@ public function on($name, $handler, $data = null, $append = true)
 {
     $this->ensureBehaviors();
     if ($append || empty($this->_events[$name])) {
-           $this->_events[$name][] = [$handler, $data];
+        $this->_events[$name][] = [$handler, $data];
     } else {
-            array_unshift($this->_events[$name], [$handler, $data]);
+        array_unshift($this->_events[$name], [$handler, $data]);
     }
 }
 ```
@@ -122,22 +124,24 @@ public function off($name, $handler = null)
     if (empty($this->_events[$name])) {
         return false;
     }
+
     // $handler === null 时解除所有的handler
     if ($handler === null) {
         unset($this->_events[$name]);
         return true;
     } else {
         $removed = false;
-    // 遍历所有的 $handler
-    foreach ($this->_events[$name] as $i => $event) {
-        if ($event[0] === $handler) {
-            unset($this->_events[$name][$i]);
-            $removed = true;
+
+        // 遍历所有的 $handler
+        foreach ($this->_events[$name] as $i => $event) {
+            if ($event[0] === $handler) {
+                unset($this->_events[$name][$i]);
+                $removed = true;
+            }
         }
-    }
-    if ($removed) {
-        $this->_events[$name] = array_values($this->_events[$name]);
-    }
+        if ($removed) {
+            $this->_events[$name] = array_values($this->_events[$name]);
+        }
         return $removed;
     }
 }
@@ -161,6 +165,7 @@ public function trigger($name, Event $event = null)
         }
         $event->handled = false;
         $event->name = $name;
+
         // 遍历handler数组，并依次调用
         foreach ($this->_events[$name] as $handler) {
             $event->data = $handler[1];
@@ -171,7 +176,7 @@ public function trigger($name, Event $event = null)
             // 如果在某一handler中，将$evnet->handled 设为true，
             // 就不再调用后续的handler
             if ($event->handled) {
-                    return;
+                return;
             }
         }
     }
@@ -185,36 +190,40 @@ abstract class Application extends Module
     // 定义了两个事件
     const EVENT_BEFORE_REQUEST = 'beforeRequest';
     const EVENT_AFTER_REQUEST = 'afterRequest';
+
     public function run()
     {
-    try {
-       $this->state = self::STATE_BEFORE_REQUEST;
-       // 先触发EVENT_BEFORE_REQUEST
-       $this->trigger(self::EVENT_BEFORE_REQUEST);
-       $this->state = self::STATE_HANDLING_REQUEST;
+        try {
 
-       // 处理Request
-       $response = $this->handleRequest($this->getRequest());
+            $this->state = self::STATE_BEFORE_REQUEST;
 
-       $this->state = self::STATE_AFTER_REQUEST;
+            // 先触发EVENT_BEFORE_REQUEST
+            $this->trigger(self::EVENT_BEFORE_REQUEST);
 
-       // 处理完毕后触发EVENT_AFTER_REQUEST
-       $this->trigger(self::EVENT_AFTER_REQUEST);
+            $this->state = self::STATE_HANDLING_REQUEST;
 
-       $this->state = self::STATE_SENDING_RESPONSE;
-       $response->send();
+            // 处理Request
+            $response = $this->handleRequest($this->getRequest());
 
-       $this->state = self::STATE_END;
+            $this->state = self::STATE_AFTER_REQUEST;
 
-       return $response->exitStatus;
+            // 处理完毕后触发EVENT_AFTER_REQUEST
+            $this->trigger(self::EVENT_AFTER_REQUEST);
 
-               
-       }catch (ExitException $e) {
+            $this->state = self::STATE_SENDING_RESPONSE;
+            $response->send();
 
-       $this->end($e->statusCode, isset($response) ? $response : null);
-       return $e->statusCode;
-       }
-     }
+            $this->state = self::STATE_END;
+
+            return $response->exitStatus;
+
+        } catch (ExitException $e) {
+
+            $this->end($e->statusCode, isset($response) ? $response : null);
+            return $e->statusCode;
+
+        }
+    }
 }
 ```
 对于事件的定义，提倡使用const常量的形式，可以避免写错。`trigger('Hello')`和`trigger('hello')`可是不同的事件哦。原因在于handler数组下标，就是事件名。而PHP里数组下标是区分大小写的。所以，用类常量的方式，可以避免这种头疼的问题。  
@@ -242,14 +251,15 @@ Yii中是支持这种一对多的绑定的。那么，在一个事件触发时�
 为了加强安全生产，国家安监局对某个煤矿进行监管，一旦发生矿难，他们会收到报警，这就是一个事件和一个handler:
 ```
 $coal->on(Coal::EVENT_DISASTER, [$government, 'onDisaster']);
+
 class Government extend yii\base\Component
 {
     ... ...
+
     public function onDisaster($event)
     {
         echo 'DISASTER! from ' . $event->sender;
     }
-
 }
 ```
 由于煤矿自身也要进行管理，所以，政府允许煤矿可以编写自己的handler对矿难进行处理。但是，这个小煤窑的老板，你有张良计，我有过墙梯，对于发生矿难这一事件编写了一个handler专门用于瞒报:
@@ -260,6 +270,7 @@ $coal->on(Coal::EVENT_DISASTER, [$baddy, 'onDisaster'], null, false);
 calss Baddy extend yii\base\Component
 {
     ... ...
+
     public function onDisaster($event)
     {
         // 将事件标记为已经处理完毕，阻止后续事件handler介入。
@@ -316,13 +327,12 @@ $_event[$eventName][$calssName][] = [$handler, $data];
 类级别事件的触发，应使用`yii\base\Event::trigger()`。这个函数不会触发实例级别的事件。值得注意的是，`$event->sender`在实例级别事件中，`$event->sender`指向触发事件的实例，而在类级别事件中，指向的是类名。在`yii\base\Event::trigger()`代码中，有:
 ```
 if (is_object($class)) {        // $class 是trigger()的第一个参数，表示类名
-   if ($event->sender === null) {
-       $event->sender = $class;
-   }
-   $class = get_class($class); // 传入的是一个实例，则以类名替换之
-   } else {
-       $class = ltrim($class, '\\');
-   }')
+    if ($event->sender === null) {
+        $event->sender = $class;
+    }
+    $class = get_class($class); // 传入的是一个实例，则以类名替换之
+} else {
+    $class = ltrim($class, '\\');
 }
 ```
 这段代码会对`$evnet->sender`进行设置，如果传入的时候，已经指定了他的值，那么这个值会保留，否则，就会替换成类名。  
@@ -330,17 +340,17 @@ if (is_object($class)) {        // $class 是trigger()的第一个参数，表�
 ```
 // 最外面的循环遍历所有祖先类
 do {
-if (!empty(self::$_events[$name][$class])) {
+    if (!empty(self::$_events[$name][$class])) {
         foreach (self::$_events[$name][$class] as $handler) {
             $event->data = $handler[1];
             call_user_func($handler[0], $event);
 
             // 所有的事件都是同一级别，可以随时终止
             if ($event->handled) {
-               return;
+                return;
             }
         }
-}
+    }
 } while (($class = get_parent_class($class)) !== false);
 ```
 上面的嵌套循环的深度，或者叫时间复杂度，受两个方面影响，一是类继承结构的深度，二是`$_event[$name][$class][]`数组的元素个数，即已经绑定的handler的数量。从实践经验看，一般软件工程继承深度超过十层的就很少见，而事件绑定上，同一事件的绑定handler超过十几个也比较少见。因此，上面的嵌套循环运算数量级大约在100～1000之间，这是可以接受的。  
