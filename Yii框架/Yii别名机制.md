@@ -410,3 +410,5 @@ Yii::getAlias('@foo/bar/2/index.php');
 * 别名解析时，优先匹配较长的别名。
 * Yii预定义了许多常用的别名供编程时使用。
 * 使用别名时，要将别名放在最前面，不能放在中间。
+
+引用：[别名(Alias) — 深入理解Yii2.0](http://www.digpage.com/aliases.html)
