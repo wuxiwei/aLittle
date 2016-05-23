@@ -17,4 +17,5 @@
 8. [Yii别名机制](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%A1%86%E6%9E%B6/Yii%E5%88%AB%E5%90%8D%E6%9C%BA%E5%88%B6.md)
 9. [Yii的类自动加载机制](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%A1%86%E6%9E%B6/Yii%E7%9A%84%E7%B1%BB%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6.md)
 10. [Yii环境和配置文件](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%A1%86%E6%9E%B6/Yii%E7%8E%AF%E5%A2%83%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.md)
+11. [Yii配置项](https://github.com/wuxiwei/aLittle/blob/master/Yii%E6%A1%86%E6%9E%B6/Yii%E9%85%8D%E7%BD%AE%E9%A1%B9.md)
 
